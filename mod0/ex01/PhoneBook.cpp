@@ -17,8 +17,9 @@ void PhoneBook::addContact()
         std::string darkestSecret;
 
         std::cout << "Enter First Name: ";
-        std::cin >> firstName;
-        if (firstName.empty() || firstName.find_first_not_of(" \t\n\v\f\r") == std::string::npos) //// 
+        std::getline(std::cin , firstName);
+        
+        if (firstName.empty())
         {
             std::cout << "First Name cannot be empty or contain only whitespace. Contact not added." << std::endl;
             return;
@@ -26,7 +27,8 @@ void PhoneBook::addContact()
         contacts[contactNum].setFirstName(firstName);
 
         std::cout << "Enter Last Name: ";
-        std::cin >> lastName;
+        std::getline(std::cin , lastName);
+     
         if (lastName.empty())
         {
             std::cout << "Last Name cannot be empty. Contact not added." << std::endl;
@@ -35,7 +37,8 @@ void PhoneBook::addContact()
         contacts[contactNum].setLastName(lastName);
 
         std::cout << "Enter Nickname: ";
-        std::cin >> nickname;
+        std::getline(std::cin , nickname);
+
         if (nickname.empty())
         {
             std::cout << "Nickname cannot be empty. Contact not added." << std::endl;
@@ -44,7 +47,8 @@ void PhoneBook::addContact()
         contacts[contactNum].setNickname(nickname);
 
         std::cout << "Enter Phone Number: ";
-        std::cin >> phoneNumber;
+        std::getline(std::cin , phoneNumber);
+
         if (phoneNumber.empty())
         {
             std::cout << "Phone Number cannot be empty. Contact not added." << std::endl;
@@ -59,7 +63,8 @@ void PhoneBook::addContact()
         contacts[contactNum].setPhoneNumber(phoneNumber);
 
         std::cout << "Enter Darkest Secret: ";
-        std::cin >> darkestSecret;
+        std::getline(std::cin , darkestSecret);
+
         if (darkestSecret.empty())
         {
             std::cout << "Darkest Secret cannot be empty. Contact not added." << std::endl;
@@ -84,25 +89,35 @@ void PhoneBook::addContact()
 
 void PhoneBook::displayContacts()
 {
+    std::string input;
+    int index;
+
     if (contactNum == 0)
     {
         std::cout << "No contacts to display." << std::endl;
         return;
     }
     std::cout << "********************************************" << std::endl;
-    std::cout << "Index | First Name |  Last Name |  Nickname " << std::endl;
+    std::cout << "Index | First Name |  Last Name  |  Nickname  " << std::endl;
     std::cout << "********************************************" << std::endl;
     for (int i = 0; i < contactNum; i++)
     {
-        std::cout << "(" << i + 1 << ")    |   " 
-            << std::setw(10) << formatLongString(contacts[i].getFirstName()) << "  |   "
-            << std::setw(10) << formatLongString(contacts[i].getLastName()) << "   |   "
+        std::cout << "(" << i + 1 << ")   | " 
+            << std::setw(10) << formatLongString(contacts[i].getFirstName()) << " | "
+            << std::setw(10) << formatLongString(contacts[i].getLastName()) << "  | "
             << std::setw(10) << formatLongString(contacts[i].getNickname()) << std::endl;
     }
 
-    int index;
+    
     std::cout << "Enter the index of the contact to view details: " << std::endl;
-    std::cin >> index ;
+    std::getline(std::cin ,input);
+
+    if (input.empty() || input.length() != 1 || input.find_first_not_of("0123456789") != std::string::npos)
+    {
+        std::cout << "Invalid index." << std::endl;
+        return;
+    }
+    index = atoi(input.c_str());
 
     if (index < 1 || contactNum < index)
     {
