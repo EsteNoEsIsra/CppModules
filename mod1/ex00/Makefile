@@ -1,28 +1,28 @@
 NAME = Zombie00
 
 SRC = newZombie.cpp randomChump.cpp Zombie.cpp  main.cpp
-HDR = Zombie.hpp Zombie.h
+HDR = Zombie.hpp
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 OBJS_DIR = objs
 
-OBJS =  $(OBJS_DIR)/$(SRC:.cpp=.o)
+OBJS = $(addprefix $(OBJS_DIR)/, $(SRC:.cpp=.o))
 
 all : $(NAME)
 
-$(OBJS_DIR)/%.o : %.cpp Makefile
-		$(CC) $(FLAGS) -c $< -o $@
+$(OBJS_DIR)/%.o : %.cpp $(HDR) Makefile
+	mkdir -p $(OBJS_DIR)
+	$(CC) $(FLAGS) -c $< -o $@
 
 $(NAME): $(OBJS) 
-		$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
 
 clean: 
-		$(RM) $(OBJS)
+	$(RM) $(OBJS_DIR)
 		 
-fclean:
-		$(RM) $(OBJS)
-		$(RM) $(NAME)
+fclean: clean
+	$(RM) $(NAME)
 re: fclean all 
 
 .PHONY: all clean fclean re 
