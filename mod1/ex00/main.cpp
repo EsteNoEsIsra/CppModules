@@ -1,4 +1,5 @@
 #include "Zombie.hpp"
+#include "Zombie.h"
 
 int main()
 {
@@ -6,5 +7,7 @@ int main()
     zombie1->announce();
     delete zombie1;
     
+    randomChump("krillin_Zombie");
+
     return 0;
 }

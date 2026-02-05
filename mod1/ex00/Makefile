@@ -1,7 +1,7 @@
 NAME = Zombie00
 
 SRC = newZombie.cpp randomChump.cpp Zombie.cpp  main.cpp
-HDR = Zombie.hpp
+HDR = Zombie.hpp Zombie.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf

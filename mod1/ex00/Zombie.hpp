@@ -13,15 +13,12 @@ class Zombie{
         void announce( void );
 
         Zombie();
+        Zombie(std::string name);
         ~Zombie();
 
-        Zombie newZombie(std::string name);
-        void randomChump(std::string name);
 
-        void setName(std::string _name);      
+        void setName(std::string _name);
         std::string getName() {return (name);}
-
 };
-
 
 #endif
