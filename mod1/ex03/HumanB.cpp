@@ -1,13 +1,13 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : name(name), weapon(NULL)
+HumanB::HumanB(std::string name) : name(name), weapon(&weapon)
 {
 
 }
 
 void HumanB::attack()
 {
-    if (!this->weapon)
+    if (this->weapon)
     {
         std::cout << this->name << " has no weapon to attack with!" << std::endl; 
         return;
@@ -22,9 +22,9 @@ HumanB::~HumanB()
 
 }
 
-Weapon* HumanB::setWeapon(Weapon weapon)
+Weapon* HumanB::setWeapon(Weapon &weapon)
 {
-    this->weapon = new Weapon(weapon.getType());    
+    weapon = Weapon(weapon.getType());    
 
-    return this->weapon;
+    return &weapon;
 }
