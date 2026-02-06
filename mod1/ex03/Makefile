@@ -1,9 +1,9 @@
-NAME = ex03
+NAME = violence
 
 SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 HDR = Weapon.hpp HumanA.hpp HumanB.hpp
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf
 OBJS_DIR = objs
 

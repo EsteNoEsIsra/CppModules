@@ -17,6 +17,7 @@ private:
 
         void attack();
         Weapon* setWeapon(Weapon weapon);
+        Weapon* getWeapon() const {return weapon;};
 };
 
 #endif
