@@ -1,24 +1,16 @@
 #include "Zombie.hpp"
 #include "Zombie.h"
 
-int main()
+int main( void)
 {
-    Zombie* zombie1 = newZombie("JAN_Zombie");
-    zombie1->announce();
+    int N = 5;
 
-    Zombie* zombie2 = newZombie("Reservo_y_no_muero");
+    Zombie* zombie = zombieHorde(N, "Zombie");
 
-    zombie2->announce();
-
-
-    delete zombie1;
-    //delete zombie2;
-
-    randomChump("krillin_Zombie");
-
-
-
-    randomChump("Paco_Zombie");
-
+    for (int i = 0; i < N; i++)
+        zombie[i].announce();
+    
+    delete[] zombie;
+    
     return 0;
 }

@@ -19,7 +19,7 @@ class Zombie{
 
 
         void setName(std::string _name);
-        std::string getName() {return (name);}
+        std::string getName() const {return (name);}
 };
 
 #endif
