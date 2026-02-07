@@ -1,4 +1,4 @@
-NAME = violence
+NAME = inecessary_violence
 
 SRC = main.cpp HumanA.cpp HumanB.cpp Weapon.cpp
 HDR = Weapon.hpp HumanA.hpp HumanB.hpp
