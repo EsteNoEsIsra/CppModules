@@ -1,5 +1,6 @@
 #include "header.h"
 
+/*
 std::string get_name(std::string str) 
 {
     std::string name;
@@ -11,7 +12,9 @@ std::string get_name(std::string str)
     }
     return name;
 }
+*/
 
+/*
 std::string get_ext(std::string str) 
 {
     std::string name;
@@ -22,7 +25,7 @@ std::string get_ext(std::string str)
     }
     return name;
 }
-
+*/
 void ft_error(std::string err)
 {
     std::cout << err << std::endl;
@@ -31,22 +34,22 @@ void ft_error(std::string err)
 
 std::string replaceContent(std::string str ,std::string s1,std::string s2)
 {
-    std::string result;
-    
-    if (str == NULL || s1 == NULL || s2 == NULL)
-        return NULL;
+    std::string result = "";
+    size_t pos = 0;
+    size_t lastpos = 0;
 
-    size_t pos = str.find(s1);
+    if (s1.empty())
+        return str;
 
-    if (pos != std::string::npos)
+    while ((pos = str.find(s1, lastpos)) != std::string::npos)
     {
-        std::string antes = str.substr(0, pos);  
-        std::string despues = str.substr(pos + s1.length());
-        result = antes + s2 + despues;
-        return result;
+        result = result + str.substr(lastpos, pos - lastpos);
+        result = result + s2;
+        lastpos = pos + s1.length(); 
     }
+     result = result + str.substr(lastpos);
 
-    return NULL;
+    return result;
 }
 
 int main(int ar, char **av)
@@ -58,28 +61,36 @@ int main(int ar, char **av)
 
         std::string s1 = av[2];
         std::string s2 = av[3];
-        std::string extt = ".replace"
+        std::string extt = ".replace";
         std::stringstream buffer;
 
+        if (s1.empty())
+        {
+            ft_error("error empty s1");
+            return 1;
+        }
+    
         file_in.open(av[1]);
         if(!file_in)
+        {
             ft_error("error opening the file");
+            return 1;
+        }
         buffer << file_in.rdbuf();
-        std::string str_readed = buffer.str();
+        std::string str_readed = buffer.str();     
+        std::string fname = std::string(av[1]) + extt;
 
-        std::string fname = get_name(av[1]) + extt;
-        
-        file_out.open(fname)
+        file_out.open(fname.c_str());
         if (!file_out)
+        {
             ft_error("error opening the file");
+            return 1;
+        }      
 
         std::string fcontent = replaceContent(str_readed, s1,s2);
-        if (fcontent == NULL)
-            ft_error("error empty strings");
-
 
         file_out << fcontent;
-        std::cout << fcontent << std::endl;
+        //std::cout << fcontent << std::endl;
 
         file_out.close();
         file_in.close();

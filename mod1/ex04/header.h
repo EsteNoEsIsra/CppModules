@@ -8,6 +8,7 @@
 
 
 
-
+std::string replaceContent(std::string str ,std::string s1,std::string s2);
+void ft_error(std::string err);
 
 #endif
