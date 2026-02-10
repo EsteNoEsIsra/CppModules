@@ -14,7 +14,7 @@ int main()
     delete zombie1;
     //delete zombie2;
 
-    randomChump("krillin_Zombie");
+//    randomChump("krillin_Zombie");
 
 
 
