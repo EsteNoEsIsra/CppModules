@@ -26,3 +26,6 @@ fclean:
 re: fclean all 
 
 .PHONY: all clean fclean re 
+
+
+#https://nach131.github.io/cpp42projects/guias/cpp_c4/module02/canonica
