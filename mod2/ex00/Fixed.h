@@ -7,11 +7,13 @@
 class Fixed
 {
 public:
+
+    // ortodox canonical form  {
     Fixed();
     Fixed(const Fixed &to_copy)
     Fixed &operator=(const Fixed &original)
     ~Fixed();
-
+    //}
     int getRawBits(void) const;
     void setRawBits(int const raw);
     

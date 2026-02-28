@@ -3,15 +3,11 @@
 
 int main(void)
 {
-	// DEFAULT CONSTRUCTOR
-	Fixed a;
-	// COPY CONSTRUCTOR
-	Fixed b(a);
-	// DEFAULT CONSTRUCTOR
-	Fixed c;
-
-	// COPY ASSIGNMENT OPERATOR OVERLOAD
-	c = b;
+	
+	Fixed a;  // DEFAULT CONSTRUCTOR	
+	Fixed b(a); // COPY CONSTRUCTOR
+	Fixed c;// DEFAULT CONSTRUCTOR
+	c = b;// COPY ASSIGNMENT OPERATOR OVERLOAD
 
 	std::cout << a.getRawBits() << std::endl;
 	std::cout << b.getRawBits() << std::endl;
