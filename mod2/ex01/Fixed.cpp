@@ -1,5 +1,5 @@
 
-#include "Fixed.hpp"
+#include "Fixed.h"
 
 
 Fixed::Fixed(void) : value(0)
@@ -34,7 +34,7 @@ Fixed::~Fixed(void) {
 
 int Fixed::getRawBits(void) const
 {
-	std::cout << "getRawBits() member function called" << std::endl;// coment
+	//std::cout << "getRawBits() member function called" << std::endl;
 	return this->value;
 }
 

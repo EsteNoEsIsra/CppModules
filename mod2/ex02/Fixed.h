@@ -14,8 +14,8 @@ public:
     Fixed(const int inInt);
 	Fixed(const float inFloat);
 
-    Fixed(const Fixed &to_copy)
-    Fixed &operator=(const Fixed &original)
+    Fixed(const Fixed &to_copy);
+    Fixed &operator=(const Fixed &original);
 
     ~Fixed();
 

@@ -1,6 +1,6 @@
-NAME = ocf
+NAME = overload_operations
 
-SRC = Fixed.cpp main.cpp
+SRC = main.cpp Fixed.cpp
 HDR = Fixed.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
@@ -26,4 +26,3 @@ fclean: clean
 re: fclean all 
 
 .PHONY: all clean fclean re 
-

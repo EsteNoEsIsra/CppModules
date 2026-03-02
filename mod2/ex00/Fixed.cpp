@@ -1,5 +1,4 @@
-
-#include "Fixed.hpp"
+#include "Fixed.h"
 
 
 Fixed::Fixed(void) : value(0) {

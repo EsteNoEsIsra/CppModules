@@ -1,7 +1,7 @@
-NAME = 
+NAME = fixed-point
 
-SRC = 
-HDR = 
+SRC = main.cpp Fixed.cpp
+HDR = Fixed.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf
@@ -26,6 +26,3 @@ fclean: clean
 re: fclean all 
 
 .PHONY: all clean fclean re 
-
-
-#https://nach131.github.io/cpp42projects/guias/cpp_c4/module02/canonica
