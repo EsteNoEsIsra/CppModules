@@ -11,7 +11,7 @@ private:
 
 
 public:
-    Weapon(std::string type);
+    Weapon(std::string &type);
     ~Weapon();
 
     std::string getType() const { return type; };
