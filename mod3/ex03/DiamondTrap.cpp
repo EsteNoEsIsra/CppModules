@@ -1,6 +1,6 @@
 #include "DiamondTrap.h"
 
-DiamondTrap::DiamondTrap() : ClapTrap("defalutD_clap_name")
+DiamondTrap::DiamondTrap() : ClapTrap("defalutD_clap_name"),ScavTrap("defalutD_clap_Scav"), FragTrap("defalutD_clap_Frag")
 {
     this->name = "defaultD";
     this->hitPoints = FragTrap::hitPoints;
@@ -13,10 +13,11 @@ DiamondTrap::DiamondTrap(const DiamondTrap &to_copy) : ClapTrap(to_copy), ScavTr
 {
     std::cout << "DiamondTrap copy Constructor called" << std::endl;
     *this = to_copy;
+
 }
 
 
-DiamondTrap::DiamondTrap(std::string _name) : ClapTrap(_name + "_clap_name") 
+DiamondTrap::DiamondTrap(std::string _name) : ClapTrap(_name + "_clap_name") , ScavTrap(_name), FragTrap(_name)
 {
     this->name = _name;
     this->hitPoints = FragTrap::hitPoints;
@@ -28,10 +29,16 @@ DiamondTrap::DiamondTrap(std::string _name) : ClapTrap(_name + "_clap_name")
 DiamondTrap &DiamondTrap::operator=(const DiamondTrap &original)
 {
     std::cout << "DiamondTrap operator copy from the original" << std::endl;
-    this->name = original.name + "_clap_name";
-    this->hitPoints = original.hitPoints;
-    this->energyPoints = original.energyPoints;
-    this->attackDamage = original.attackDamage;
+    if(this != &original)
+    {
+        this->name = original.name ;
+        this->hitPoints = original.hitPoints;
+        this->energyPoints = original.energyPoints;
+        this->attackDamage = original.attackDamage;
+        ClapTrap::name = original.ClapTrap::name;
+    }
+
+    
     return *this;
 }
 
