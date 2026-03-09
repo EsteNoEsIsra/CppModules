@@ -1,6 +1,6 @@
 #include "DiamondTrap.h"
 
-DiamondTrap::DiamondTrap() : ClapTrap("defalutD_clap_name")//,ScavTrap("defalutD_clap_Scav"), FragTrap("defalutD_clap_Frag")
+DiamondTrap::DiamondTrap() : ClapTrap("defalutD_clap_name"),ScavTrap("defalutD_clap_Scav"), FragTrap("defalutD_clap_Frag")
 {
     this->name = "defaultD";
     this->hitPoints = FragTrap::hitPoints;
@@ -9,7 +9,7 @@ DiamondTrap::DiamondTrap() : ClapTrap("defalutD_clap_name")//,ScavTrap("defalutD
     std::cout << "DiamondTrap Default Constructor called" << std::endl;
 }
 
-DiamondTrap::DiamondTrap(const DiamondTrap &to_copy) : ClapTrap(to_copy)//, ScavTrap(to_copy),FragTrap(to_copy)
+DiamondTrap::DiamondTrap(const DiamondTrap &to_copy) : ClapTrap(to_copy), ScavTrap(to_copy),FragTrap(to_copy)
 {
     std::cout << "DiamondTrap copy Constructor called" << std::endl;
     *this = to_copy;
