@@ -9,7 +9,10 @@ int main( void )
 
     a.attack("some other robot");
 	a.takeDamage(1);
-	a.takeDamage(10);
+    //a.takeDamage(9);
+	a.beRepaired(5);
+    
+    a.takeDamage(10);
 	a.beRepaired(5);
 
     c.takeDamage(9);

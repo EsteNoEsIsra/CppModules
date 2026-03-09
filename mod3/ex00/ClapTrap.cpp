@@ -41,7 +41,7 @@ void ClapTrap::attack(const std::string& target)
         std::cout << "ClapTrap " << this->name << " attacks "  << target << " causing " << this->attackDamage << " points of damage!" << std::endl;
         this->energyPoints--;
     }
-    else if (this->energyPoints == 0 || this->energyPoints < 0)
+    else if (this->energyPoints <= 0)
         std::cout << "ClapTrap " << this->name << " cant attack "  << target << " no energy left" << std::endl;
     else
         std::cout << "ClapTrap " << this->name << " cant attack because is destroyed" << std::endl;
@@ -70,8 +70,9 @@ void ClapTrap::beRepaired(unsigned int amount)
         std::cout << "ClapTrap " << this->name << " repairs " << amount << " hit points " << std::endl;
         this->energyPoints--;
     }
+    else if (this->hitPoints <= 0)
+        std::cout << "ClapTrap " << this->name << " cant be reapired  because is destoyed" << std::endl;
     else if (this->energyPoints <= 0)
         std::cout << "ClapTrap " << this->name << " cant be reapired  no energy left" << std::endl;
-    else
-        std::cout << "ClapTrap " << this->name << " cant be reapired  because is destoyed" << std::endl;
+    
 }

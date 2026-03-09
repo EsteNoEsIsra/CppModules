@@ -1,4 +1,4 @@
-NAME = serena
+NAME = scavTrap
 
 SRC = ClapTrap.cpp main.cpp ScavTrap.cpp
 HDR = ClapTrap.h ScavTrap.h

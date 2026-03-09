@@ -1,4 +1,4 @@
-NAME = ClapTrap00
+NAME = clapTrap
 
 SRC = ClapTrap.cpp main.cpp
 HDR = ClapTrap.h
