@@ -1,4 +1,4 @@
-NAME = 
+NAME = animal
 
 SRC = Animal.cpp Cat.cpp Dog.cpp
 HDR = Animal.h	Cat.h Dog.h
