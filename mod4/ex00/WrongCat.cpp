@@ -3,9 +3,12 @@
 
 WrongCat::WrongCat() : WrongAnimal("WrongAnimal")
 {
-
+    std::cout << "Default wrong Cat Constructor" << std::endl;
 }
-
+WrongCat::WrongCat(const std::string &_type) : WrongAnimal(_type)
+{
+    std::cout << "wrong Cat destructor" << std::endl;
+}
 WrongCat::WrongCat(const WrongCat &to_copy) : WrongAnimal(to_copy)
 {
 
@@ -13,13 +16,14 @@ WrongCat::WrongCat(const WrongCat &to_copy) : WrongAnimal(to_copy)
 
 WrongCat &WrongCat::operator=(const WrongCat &original)
 {
-     if (this != &original)
-    *this = original;
+    if (this != &original)
+        *this = original;
+    return *this;
 }
 
 WrongCat::~WrongCat()
 {
-
+    std::cout << "wrong Cat destructor" << std::endl;
 }
 
 void WrongCat::makeSound() const 
