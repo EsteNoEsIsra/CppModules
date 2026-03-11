@@ -2,7 +2,7 @@
 
 Cat::Cat() : Animal("Cat")
 {
-    std::cout << "Default Cat destructor" << std::endl;
+    std::cout << "Default Cat constructor" << std::endl;
 }
 Cat::Cat(const std::string &_type) : Animal(_type)
 {
