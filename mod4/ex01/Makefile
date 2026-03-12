@@ -1,4 +1,4 @@
-NAME = brain
+NAME = brains
 
 SRC = Animal.cpp Cat.cpp Dog.cpp WrongAnimal.cpp WrongCat.cpp main.cpp Brain.cpp
 HDR = Animal.h	Cat.h Dog.h WrongAnimal.h WrongCat.h Brain.h

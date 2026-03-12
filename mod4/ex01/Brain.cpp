@@ -11,53 +11,38 @@ Brain::Brain(const Brain &copy)
 	*this = copy;
 }
 
-// Deconstructors
 Brain::~Brain()
 {
-	std::cout << "Brain Deconstructor called" << std::endl;
+	std::cout << "Brain Destructor called" << std::endl;
 }
 
-// Overloaded Operators
-Brain &Brain::operator=(const Brain &src)
+Brain &Brain::operator=(const Brain &original)
 {
 	std::cout << "Brain Assignation operator called" << std::endl;
-	if (this == &src)
-		return *this;
-	for (int i = 0; i < 100; i++)
+	if (this != &original)
 	{
-		if (src._ideas[i].length() > 0)
-			this->_ideas[i].assign(src._ideas[i]);
-	}
+		for (int i = 0; i < 100; i++)
+		{
+			if (original.ideas[i].length() > 0)
+				this->ideas[i] = original.ideas[i];
+		}
+	}	
 	return *this;
 }
 
-// Public Methods
-
-// Getter
-const std::string	Brain::getIdea(size_t i)const
+std::string	Brain::getIdea(int i)const
 {
 	if (i < 100)
-		return(this->_ideas[i]);
+		return(this->ideas[i]);
 	else
-		return ("\033[33mThere is only 100 ideas per brain.\033[0m");
+		return ("There is only 100 ideas per brain.");
 }
 
-const std::string *Brain::getIdeaAddress(size_t i)const
-{
-	if (i < 100)
-	{
-		const std::string	&stringREF = this->_ideas[i];
-		return(&stringREF);
-	}
-	else
-		return (NULL);
-}
 
-// Setter
-void	Brain::setIdea(size_t i, std::string idea)
+void Brain::setIdea(int i, std::string _idea)  
 {
 	if (i < 100)
-		this->_ideas[i] = idea;
+		this->ideas[i] = _idea;
 	else
-		std::cout << "\033[33mThere is only 100 ideas per brain.\033[0m" << std::endl;
+		std::cout << "Only 100 ideas per brain" << std::endl;
 }

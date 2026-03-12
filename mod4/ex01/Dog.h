@@ -15,6 +15,8 @@ class Dog : public Animal
 
         Dog(const std::string &_type);
         void makeSound() const;
+
+        Brain *getBrain() const;
 };
 
 #endif

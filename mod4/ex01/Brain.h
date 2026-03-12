@@ -13,8 +13,8 @@ class Brain
         Brain &operator=(const Brain &original);
         virtual ~Brain();
 
-    std::string getIdea()const ;
-    std::string setIdea()const ;
+    std::string getIdea(int i)const ;
+    void setIdea(int i,std::string _idea);
 
 
     private:
