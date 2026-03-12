@@ -12,12 +12,13 @@ Animal::Animal(const std::string  &_type) : type(_type)
 
 Animal::Animal(const Animal &to_copy) : type(to_copy.type)
 {
-
+   // std::cout << "animal copy Constructor" << std::endl;
 }
 Animal &Animal::operator=(const Animal &original)
 {
     if (this != &original)
         *this = original;
+    // std::cout << "animal copy operand Constructor" << std::endl;
     return *this;
 }
 

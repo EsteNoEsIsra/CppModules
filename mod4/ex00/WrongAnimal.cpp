@@ -12,13 +12,14 @@ WrongAnimal::WrongAnimal(const std::string  &_type) : type(_type)
 
 WrongAnimal::WrongAnimal(const WrongAnimal &to_copy) : type(to_copy.type)
 {
-
+    // std::cout << "Wrong animal copy  Constructor" << std::endl; 
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &original)
 {
     if (this != &original)
         *this = original;
+    // std::cout << "Wromg animal copy operand Constructor" << std::endl;
     return *this;
 }
 

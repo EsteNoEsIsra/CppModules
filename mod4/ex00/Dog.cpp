@@ -12,13 +12,14 @@ Dog::Dog(const std::string &_type) : Animal(_type)
 
 Dog::Dog(const Dog &to_copy) : Animal(to_copy)
 {
-
+    // std::cout << "Dog copy Constructor" << std::endl;
 }
 
 Dog &Dog::operator=(const Dog &original)
 {
     if (this != &original)
         *this = original;
+    // std::cout << "Dog copy operand Constructor" << std::endl;
     return *this;
 }
 

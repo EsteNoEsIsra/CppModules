@@ -10,13 +10,14 @@ Cat::Cat(const std::string &_type) : Animal(_type)
 }
 Cat::Cat(const Cat &to_copy) : Animal(to_copy)
 {
-
+    // std::cout << "Cat copy Constructor" << std::endl;
 }
 
 Cat &Cat::operator=(const Cat &original)
 {
     if (this != &original)
         *this = original;
+    // std::cout << "Cat copy operand Constructor" << std::endl;
     return *this;
 }
 

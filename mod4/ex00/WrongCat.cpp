@@ -11,13 +11,14 @@ WrongCat::WrongCat(const std::string &_type) : WrongAnimal(_type)
 }
 WrongCat::WrongCat(const WrongCat &to_copy) : WrongAnimal(to_copy)
 {
-
+    // std::cout << "Wrong cat copy Constructor" << std::endl;
 }
 
 WrongCat &WrongCat::operator=(const WrongCat &original)
 {
     if (this != &original)
         *this = original;
+    // std::cout << "Wrong cat copy operand Constructor" << std::endl;
     return *this;
 }
 
