@@ -1,6 +1,6 @@
 #include "Dog.h"
 #include "Cat.h"
-#include "Animal.h"
+#include "AAnimal.h"
 #include "WrongAnimal.h"
 #include "WrongCat.h"
 #include "Brain.h"
@@ -10,8 +10,9 @@ int main( void )
 	
 	std::cout << "***test***" << std::endl;
 	const int max_l = 4;
+	//AAnimal a = new AAnimal();
 
-	Animal *ani[max_l];
+	AAnimal *ani[max_l];
 	
 
 	std::cout << "---------create----------" << std::endl;

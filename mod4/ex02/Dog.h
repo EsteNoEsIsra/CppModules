@@ -1,0 +1,22 @@
+#ifndef DOG_H
+#define DOG_H
+
+#include "AAnimal.h" 
+#include "Brain.h" 
+class Dog : public AAnimal
+{
+    private:
+        Brain *brain;
+    public:
+        Dog();
+        Dog(const Dog &to_copy);
+        Dog &operator=(const Dog &original);
+        ~Dog();
+
+        Dog(const std::string &_type);
+        void makeSound() const;
+
+        Brain *getBrain() const;
+};
+
+#endif
