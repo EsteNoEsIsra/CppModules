@@ -1,8 +1,8 @@
  #include "Bureaucrat.h"
 
-Bureaucrat::Bureaucrat(): name("default")
+Bureaucrat::Bureaucrat(): name("default"), grade(150)
 {
-    //std::cout << "Bureaucrat Default Constructor Called" << std::endl;
+    std::cout << "Bureaucrat Default Constructor Called  with a grade 150" << std::endl;
 }
 
 Bureaucrat::Bureaucrat(std::string const _name, int _grade) : name(_name)
