@@ -7,6 +7,8 @@
 # include <string>
 # include <exception>
 
+//#include "Form.h"
+class Form;
 
 
 class Bureaucrat
@@ -27,6 +29,8 @@ class Bureaucrat
 
     void incrementGrade();
     void decrementGrade();
+
+    void signForm(Form& obj);
 
     class GradeTooHighException : public std::exception
     {

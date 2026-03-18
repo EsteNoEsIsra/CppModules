@@ -8,7 +8,6 @@
 # include <exception>
 
 
-
 class Bureaucrat
 {
     private:
@@ -27,6 +26,8 @@ class Bureaucrat
 
     void incrementGrade();
     void decrementGrade();
+
+    
 
     class GradeTooHighException : public std::exception
     {

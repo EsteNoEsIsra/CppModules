@@ -15,7 +15,7 @@ class Form
     public:
 
     Form();
-    Form(std::string const _name, const int _gradetoSign, const int _gradetoExec);
+    Form(std::string const _name, const int _gradeToSign, const int _gradeToExec);
     Form(const Form &to_copy);
     Form &operator=(const Form &original);
     ~Form();    
@@ -34,7 +34,7 @@ class Form
     class GradeTooHighException : public std::exception
     {
         public:
-        virtual const char *what() const throw ();
+            virtual const char *what() const throw ();
     };
 
     class GradeTooLowException : public std::exception
@@ -45,6 +45,6 @@ class Form
 
 };
 
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &obj);
+std::ostream &operator<<(std::ostream &os, const Form &obj);
 
 #endif

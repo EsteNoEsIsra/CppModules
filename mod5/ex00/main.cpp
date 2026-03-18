@@ -6,13 +6,12 @@ int main(void)
     {
         Bureaucrat b("Mariano", 5);
         std::cout << b << std::endl;
-
+        
     }
     catch(std::exception &e)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-
 
     try
     {
@@ -36,6 +35,6 @@ int main(void)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-
+    
     return 0;
 }

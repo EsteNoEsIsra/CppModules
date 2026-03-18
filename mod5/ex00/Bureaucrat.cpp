@@ -1,4 +1,5 @@
- #include "Bureaucrat.h"
+#include "Bureaucrat.h"
+
 
 Bureaucrat::Bureaucrat(): name("default"), grade(150)
 {
@@ -53,6 +54,7 @@ void Bureaucrat::decrementGrade()
     else 
         this->grade++;
 }
+
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
