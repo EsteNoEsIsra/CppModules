@@ -35,22 +35,27 @@ Form::~Form()
 }
 void Form::beSigned(const Bureaucrat& obj)
 {
-    if (obj.getGrade() < 1)
-        throw Form::GradeTooLowException();
-    if (obj.getGrade() > 150)
-        throw Form::GradeTooHighException();
-    this->isSigned = true;
+    if (this->isSigned == false)
+    {
+        if (obj.getGrade() > this->gradeToSign)
+            throw Form::GradeTooLowException();
+        //if (obj.getGrade() > 1)
+        //   throw Form::GradeTooHighException();
+        this->isSigned = true;
+    }
+    else 
+        std::cout << this->getName() << " is already signed" << std::endl;
 }
 
 const char * Form::GradeTooHighException::what() const throw()
 {
-    return "Grade is too high maximun 1 ****";
+    return "Grade is too high";
 }
 
 
 const char * Form::GradeTooLowException::what() const throw()
 {
-    return "Grade is too low minimun 150 ****";
+    return "Grade is too low";
 }
 
 
@@ -62,9 +67,9 @@ int  Form::getGradeToExec() const {return this->gradeToExec;}
 
 std::ostream &operator<<(std::ostream &os, const Form &obj)
 {
-    os << obj.getName() <<", Form , isSigned: " 
-        << obj.getSigned() << " gradeToSign " << obj.getGradeToSign()
-        <<" gradeToExecute " << obj.getGradeToExec();
+    os << obj.getName() <<":Form  isSigned: " 
+        << obj.getSigned() << " gradeToSign= " << obj.getGradeToSign()
+        <<" gradeToExecute= " << obj.getGradeToExec();
 
     return os;
 }

@@ -33,7 +33,7 @@ int main(void)
     }
     catch(std::exception &e)
     {
-        std::cerr << RED << "Error: " << e.what() << RESET << std::endl;
+        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
     
 

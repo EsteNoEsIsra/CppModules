@@ -1,4 +1,4 @@
-NAME = form
+NAME = aform
 
 SRC = main.cpp Bureaucrat.cpp Form.cpp
 HDR = Bureaucrat.h Form.h
