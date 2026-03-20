@@ -1,7 +1,7 @@
 NAME = aform
 
-SRC = main.cpp Bureaucrat.cpp Form.cpp
-HDR = Bureaucrat.h Form.h
+SRC = main.cpp Bureaucrat.cpp AForm.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
+HDR = Bureaucrat.h AForm.h PresidentialPardonForm.h RobotomyRequestForm.h ShrubberyCreationForm.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf

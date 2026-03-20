@@ -67,7 +67,7 @@ int  AForm::getGradeToExec() const {return this->gradeToExec;}
 
 void execute(Bureaucrat const & executor)  
 {
-    //nada
+    std::cout << executor.getName() << std::endl; 
 }
 
 std::ostream &operator<<(std::ostream &os, const AForm &obj)

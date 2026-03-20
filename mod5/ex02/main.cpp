@@ -1,8 +1,20 @@
 #include "Bureaucrat.h"
-#include "Form.h"
+#include "AForm.h"
+#include "PresidentialPardonForm.h"
 int main(void)
 {
-    
+    try
+    {
+        Bureaucrat b("Mariano", 3);
+
+    }
+    catch(std::exception &e)
+    {
+        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
+    }
+
+
+    /*
     std::cout << "\n===== TEST 1 =====" << std::endl;
     try
     {
@@ -18,7 +30,6 @@ int main(void)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-    
     std::cout << "\n===== TEST 1.5 =====" << std::endl;
     try
     {
@@ -35,8 +46,6 @@ int main(void)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-    
-
     // Falla 
     std::cout << "\n===== TEST 2 =====" << std::endl;
     try
@@ -53,7 +62,6 @@ int main(void)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-
     // error  
     std::cout << "\n===== TEST 3 =====" << std::endl;
     try
@@ -64,7 +72,6 @@ int main(void)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-
     std::cout << "\n===== TEST 4 =====" << std::endl;
     try
     {
@@ -74,7 +81,6 @@ int main(void)
     {
         std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-
     // Error 
     std::cout << "\n===== TEST 5 =====" << std::endl;
     try
@@ -85,6 +91,6 @@ int main(void)
     {
        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
     }
-
+    */
     return 0;
 }

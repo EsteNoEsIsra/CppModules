@@ -1,5 +1,5 @@
  #include "Bureaucrat.h"
- #include "Form.h"
+ #include "AForm.h"
 
 Bureaucrat::Bureaucrat(): name("default"), grade(150)
 {
@@ -55,7 +55,7 @@ void Bureaucrat::decrementGrade()
         this->grade++;
 }
 
-void Bureaucrat::signForm(Form &obj)
+void Bureaucrat::signForm(AForm &obj)
 {
     if (obj.getSigned() == false)
     {
@@ -69,6 +69,22 @@ void Bureaucrat::signForm(Form &obj)
             std::cerr << RED << this->getName() << " couldn't sign " << obj.getName() << " because " << e.what() << RESET << std::endl ; 
         }
     }
+    
+}
+
+void  Bureaucrat::executeForm(AForm const & form) const 
+{
+    try
+    {
+        form.execute(*this);
+        std::cout << this->getName() << " executed "  << form.getName() << std::endl;
+    }
+    catch( std::exception& e)
+    {
+        std::cerr << RED << this->getName() << " couldnt execute "<< e.what()
+         << RESET <<std::endl;
+    }
+    
     
 }
 
