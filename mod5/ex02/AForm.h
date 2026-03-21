@@ -18,7 +18,7 @@ class AForm
     AForm(std::string const _name, const int _gradeToSign, const int _gradeToExec);
     AForm(const AForm &to_copy);
     AForm &operator=(const AForm &original);
-    ~AForm();    
+    virtual ~AForm();    
 
     void beSigned(const Bureaucrat &obj);
     std::string getName()const;
@@ -40,6 +40,11 @@ class AForm
             virtual const char *what() const throw ();
     };
 
+     class FormNotSigned : public std::exception
+    {
+        public:
+            virtual const char *what() const throw ();
+    };
 };
 
 std::ostream &operator<<(std::ostream &os, const AForm &obj);

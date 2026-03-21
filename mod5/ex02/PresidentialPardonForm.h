@@ -2,20 +2,21 @@
 
 #include "AForm.h"
 
-
 class PresidentialPardonForm : public AForm
 {
     private:
-        int toSign;
-        int toExec;
+        std::string target;
     public:
         PresidentialPardonForm();
-        PresidentialPardonForm(const AForm &obj);
+        PresidentialPardonForm(const std::string &_target);
         PresidentialPardonForm(const PresidentialPardonForm &to_copy);
         PresidentialPardonForm &operator=(const PresidentialPardonForm &original);
         ~PresidentialPardonForm();
 
-        int getToSign() const ;
-        int getToExec() const ;
-        void execute(Bureaucrat const & executor) const;
+        std::string getTarget() const ;
+        
+        virtual void execute(Bureaucrat const & executor) const;
+
+
+
 };

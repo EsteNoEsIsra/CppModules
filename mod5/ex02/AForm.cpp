@@ -58,6 +58,10 @@ const char * AForm::GradeTooLowException::what() const throw()
     return "Grade is too low";
 }
 
+const char * AForm::FormNotSigned::what() const throw()
+{
+    return " is not signed ";
+}
 
 std::string AForm::getName()const { return this->name;}
 bool AForm::getSigned() const {return this->isSigned;}
@@ -65,7 +69,7 @@ int  AForm::getGradeToSign() const { return this->gradeToSign;}
 int  AForm::getGradeToExec() const {return this->gradeToExec;}
 
 
-void execute(Bureaucrat const & executor)  
+void AForm::execute(Bureaucrat const & executor)  const 
 {
     std::cout << executor.getName() << std::endl; 
 }

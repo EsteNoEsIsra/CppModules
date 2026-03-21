@@ -69,7 +69,6 @@ void Bureaucrat::signForm(AForm &obj)
             std::cerr << RED << this->getName() << " couldn't sign " << obj.getName() << " because " << e.what() << RESET << std::endl ; 
         }
     }
-    
 }
 
 void  Bureaucrat::executeForm(AForm const & form) const 

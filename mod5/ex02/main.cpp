@@ -1,11 +1,51 @@
 #include "Bureaucrat.h"
 #include "AForm.h"
 #include "PresidentialPardonForm.h"
+#include "RobotomyRequestForm.h"
+#include "ShrubberyCreationForm.h"
+
 int main(void)
 {
+    std::srand(time(0));
     try
     {
-        Bureaucrat b("Mariano", 3);
+        Bureaucrat boss("Mariano", 3);
+        Bureaucrat bur("paco", 150);
+
+        ShrubberyCreationForm shrubbery("home");
+        RobotomyRequestForm robotomy("Bender");
+        PresidentialPardonForm pardon("Zaphod Beeblebrox");
+
+        std::cout << "--- Test 1: Intento de ejecución sin firma ---" << std::endl;
+        try {
+            boss.executeForm(shrubbery);
+        } catch (std::exception &e) {
+            std::cerr << "Error esperado: " << e.what() << std::endl;
+        }
+
+        std::cout << "\n--- Test 2: Firma de formularios ---" << std::endl;
+        boss.signForm(shrubbery);
+        boss.signForm(robotomy);
+        boss.signForm(pardon);
+
+        std::cout << "\n--- Test 3: Ejecución correcta (Shrubbery) ---" << std::endl;
+        boss.executeForm(shrubbery); // Debería crear el archivo home_shrubbery
+
+        std::cout << "\n--- Test 4: Ejecución con 50% probabilidad (Robotomy) ---" << std::endl;
+        boss.executeForm(robotomy);
+        boss.executeForm(robotomy);
+        boss.executeForm(robotomy);
+        boss.executeForm(robotomy); // Probar varias veces para ver el random
+
+        std::cout << "\n--- Test 5: Ejecución presidencial (Pardon) ---" << std::endl;
+        boss.executeForm(pardon);
+
+        std::cout << "\n--- Test 6: Burócrata con grado insuficiente ---" << std::endl;
+        try {
+            bur.executeForm(pardon);
+        } catch (std::exception &e) {
+            std::cerr << "Error esperado: " << e.what() << std::endl;
+        }
 
     }
     catch(std::exception &e)
@@ -14,83 +54,5 @@ int main(void)
     }
 
 
-    /*
-    std::cout << "\n===== TEST 1 =====" << std::endl;
-    try
-    {
-        
-        Bureaucrat b("Mariano", 2);
-        Form f("mates", 21 , 32);
-        std::cout << b << std::endl;
-        std::cout << f << std::endl;
-        b.signForm(f);
-        std::cout << f << std::endl;
-    }
-    catch(std::exception &e)
-    {
-        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
-    }
-    std::cout << "\n===== TEST 1.5 =====" << std::endl;
-    try
-    {
-        
-        Bureaucrat b("Mariano", 2);
-        Form f("mates", 21 , 32);
-        std::cout << b << std::endl;
-        std::cout << f << std::endl;
-        b.signForm(f);
-        b.signForm(f);
-        std::cout << f << std::endl;
-    }
-    catch(std::exception &e)
-    {
-        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
-    }
-    // Falla 
-    std::cout << "\n===== TEST 2 =====" << std::endl;
-    try
-    {
-        Bureaucrat b2("Mariano2", 100);
-        Form f2("gym", 50, 10);
-
-        std::cout << b2 << std::endl;
-        std::cout << f2 << std::endl;
-
-        b2.signForm(f2);
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
-    }
-    // error  
-    std::cout << "\n===== TEST 3 =====" << std::endl;
-    try
-    {
-        Form f3("InvalidHigh", 0, 10);
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
-    }
-    std::cout << "\n===== TEST 4 =====" << std::endl;
-    try
-    {
-        Form f4("InvalidLow", 200, 10);
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
-    }
-    // Error 
-    std::cout << "\n===== TEST 5 =====" << std::endl;
-    try
-    {
-        Bureaucrat b3("ErrorGuy", 0);
-    }
-    catch (std::exception &e)
-    {
-       std::cerr << RED << "Error: " << e.what() << RESET <<std::endl;
-    }
-    */
     return 0;
 }
