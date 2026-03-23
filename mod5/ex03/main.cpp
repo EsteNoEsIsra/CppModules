@@ -48,7 +48,7 @@ int main(void)
         }
 
         std::cout << std::endl;
-        unknown = sadIntern.makeForm("invalid form", "Target");
+        unknown = sadIntern.makeForm("declaracion de la renta", "Target");
         if (!unknown) 
         {
             std::cout << "El Intern no pudo crear el formulario (main)." << std::endl;
