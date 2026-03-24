@@ -1,7 +1,7 @@
 NAME = convert
 
-SRC = main.cpp 
-HDR = 
+SRC = main.cpp ScalarConverter.cpp
+HDR = ScalarConverter.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf

@@ -10,7 +10,7 @@ private:
 public:
     ScalarConverter();
     ScalarConverter(const ScalarConverter *to_copy);
-    ScalarConverter &operator=(const ScalarConverter original);
+    ScalarConverter &operator=(const ScalarConverter &original);
     ~ScalarConverter();
 
     static char convert(const std::string &_toCast);
