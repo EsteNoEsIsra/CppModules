@@ -1,22 +1,22 @@
 #pragma once
 
+#include <cstdlib>
 #include <iostream>
+#include <limits>
 #include <string>
-
 class ScalarConverter
 {
-private:
+    private:
     
-public:
-    ScalarConverter();
-    ScalarConverter(const ScalarConverter *to_copy);
-    ScalarConverter &operator=(const ScalarConverter &original);
-    ~ScalarConverter();
+    public:
+        ScalarConverter();
+        ScalarConverter(const ScalarConverter *to_copy);
+        ScalarConverter &operator=(const ScalarConverter &original);
+        ~ScalarConverter();
 
-    static char convert(const std::string &_toCast);
-    // static char convertChar(std::string _value);
-    // static int convertInt(std::string _value);
-    // static float convertFloat(std::string _value);
-    // static double convertDouble(std::string _value);
+        static void convert(const std::string &_toCast);
+
+        static void convertChar(const std::string &_str);
+        static void convertNum(const  std::string &_str, long double num);
+        static void convertSpecial(const std::string &_str);
 };
-

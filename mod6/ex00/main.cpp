@@ -1,6 +1,5 @@
 #include "ScalarConverter.h"
 
-
 int main( int ar, char **av)
 {
     if (ar == 2)
@@ -9,7 +8,7 @@ int main( int ar, char **av)
         ScalarConverter::convert(str);
     }
     else 
-        std::cout << "Must be a "
+        std::cout << "Must have 1 arg" << std::endl;
     
     return 0;
 }
