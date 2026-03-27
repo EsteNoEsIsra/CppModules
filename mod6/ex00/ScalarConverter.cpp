@@ -40,18 +40,23 @@ void ScalarConverter::convertNum(const std::string &_str, long double num)
     else
         std::cout << "int: " << static_cast<int>(num) << std::endl;
 
-    //if (num < -std::numeric_limits<float>::max() || num > std::numeric_limits<float>::max())
-    //    std::cout << "float: imposible" << std::endl;
-    //else
+    if (static_cast<float>(num) == floor(num))
+        std::cout << "float: "<< std::fixed << static_cast<float>(num) << ".0f"<< std::endl;
+    else
     {
-        //float s = std::strtof(_str.c_str(), NULL);
-        std::cout << "float: " << static_cast<float>(num) << "f"<< std::endl;
+        std::cout << "float: "<< std::fixed << static_cast<float>(num) << "f"<< std::endl;
     }
 
-  if (num < -std::numeric_limits<double>::max() || num > std::numeric_limits<double>::max())
+    if (num < -std::numeric_limits<double>::max() || num > std::numeric_limits<double>::max())
         std::cout << "double: imposible" << std::endl;
     else
-        std::cout << "double: " << static_cast<double>(num) << std::endl;
+    {
+        if (static_cast<float>(num) == floor(num))
+            std::cout << "double: " << static_cast<double>(num) << ".0"<< std::endl;
+        else
+            std::cout << "double: " << std::fixed << static_cast<double>(num)  << std::endl;
+    }
+        
 }
 
 void ScalarConverter::convertSpecial(const std::string &_str)

@@ -3,6 +3,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <limits>
+#include <math.h>
 #include <string>
 class ScalarConverter
 {
