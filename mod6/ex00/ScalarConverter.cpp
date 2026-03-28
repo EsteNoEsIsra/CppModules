@@ -173,6 +173,6 @@ void ScalarConverter::convert(const std::string &_toCast)
     else if (isSpecial(_toCast))
         convertSpecial(_toCast);
     else 
-        std::cout << "DEBUG UNKNOWN TYPE" << std::endl;
+        std::cout << "ERROR: UNKNOWN TYPE" << std::endl;
 
 }

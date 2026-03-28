@@ -9,12 +9,12 @@ class ScalarConverter
 {
     private:
     
-    public:
+ 
         ScalarConverter();
         ScalarConverter(const ScalarConverter *to_copy);
         ScalarConverter &operator=(const ScalarConverter &original);
         ~ScalarConverter();
-
+    public:
         static void convert(const std::string &_toCast);
 
         static void convertChar(const std::string &_str);
