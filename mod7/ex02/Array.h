@@ -10,7 +10,7 @@ class Array
 {
     private:
         T *arrData;
-        unsigned int arrSize;
+        unsigned int size_arr;
     public:
         Array();
         Array(const Array *to_copy);
@@ -19,7 +19,7 @@ class Array
 
         Array(unsigned int n);
 
-        
+        unsigned int size() const;
         T &operator[](unsigned int n);
         const T &operator[](unsigned int n) const;
 
@@ -29,5 +29,7 @@ class Array
             virtual const char * what() const throw();
     }
 };
+
+#include "Array.tpp"
 
 #endif

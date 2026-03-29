@@ -1,7 +1,7 @@
-NAME = convert
+NAME = arraymo
 
-SRC = main.cpp ScalarConverter.cpp
-HDR = ScalarConverter.h
+SRC = main.cpp 
+HDR = Array.h Array.tpp
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf
