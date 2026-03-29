@@ -1,26 +1,39 @@
-#ifndef ARRAY_H
-#define ARRAY_H
+#include "Array.h"
 
-
-Array::Array()
-{
-
-}
-Array::Array(unsigned int n)
+template<typename T>
+Array<T>::Array()
 {
     
 }
-Array::Array(const Array *to_copy)
+
+template<typename T>
+Array<T>::Array(unsigned int n)
+{
+    
+}
+template<typename T>
+Array<T>::Array(const Array<T> *to_copy)
 {
 
 }
-Array &Array::operator=(const Array &original)
+
+template<typename T>
+Array<T> &Array<T>::operator=(const Array<T> &original)
 {
 
 }
-Array::~Array()
+template<typename T>
+Array<T>::~Array()
 {
 
 }
+template<typename T>
+T &Array<T>::operator[](unsigned int n)
+{
 
-#endif
+}
+template<typename T>
+const T &Array<T>::operator[](unsigned int n) const
+{
+
+}

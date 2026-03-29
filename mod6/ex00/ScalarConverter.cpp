@@ -20,7 +20,7 @@ void ScalarConverter::convertChar(const std::string &_str)
         std::cout << "char: "<< "Non displayable" << std::endl;
     std::cout << "int: " << static_cast<int>(_str[0]) << std::endl;
     std::cout << "float: " << static_cast<float>(_str[0]) << ".0f"<< std::endl;
-    std::cout << "double: " << static_cast<double>(_str[0])<< std::endl;
+    std::cout << "double: " << static_cast<double>(_str[0])<< ".0"<< std::endl;
 }
 
 void ScalarConverter::convertNum(const std::string &_str, long double num)
@@ -41,10 +41,10 @@ void ScalarConverter::convertNum(const std::string &_str, long double num)
         std::cout << "int: " << static_cast<int>(num) << std::endl;
 
     if (static_cast<float>(num) == floor(num))
-        std::cout << "float: "<< std::fixed << static_cast<float>(num) << ".0f"<< std::endl;
+        std::cout << "float: " << static_cast<float>(num) << ".0f"<< std::endl;
     else
     {
-        std::cout << "float: "<< std::fixed << static_cast<float>(num) << "f"<< std::endl;
+        std::cout << "float: " << static_cast<float>(num) << "f"<< std::endl;
     }
 
     if (num < -std::numeric_limits<double>::max() || num > std::numeric_limits<double>::max())
@@ -54,7 +54,7 @@ void ScalarConverter::convertNum(const std::string &_str, long double num)
         if (static_cast<float>(num) == floor(num))
             std::cout << "double: " << static_cast<double>(num) << ".0"<< std::endl;
         else
-            std::cout << "double: " << std::fixed << static_cast<double>(num)  << std::endl;
+            std::cout << "double: "  << static_cast<double>(num)  << std::endl;
     }
         
 }

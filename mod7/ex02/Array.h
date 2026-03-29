@@ -10,7 +10,7 @@ class Array
 {
     private:
         T *arrData;
-        unsigned int arrSize
+        unsigned int arrSize;
     public:
         Array();
         Array(const Array *to_copy);
@@ -23,7 +23,7 @@ class Array
         T &operator[](unsigned int n);
         const T &operator[](unsigned int n) const;
 
-    class LimitsExceptions : public std::Exception 
+    class LimitsExceptions : public std::exception 
     {
         public: 
             virtual const char * what() const throw();
