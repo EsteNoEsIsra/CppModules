@@ -1,7 +1,6 @@
 #ifndef ARRAY_H
 #define ARRAY_H
 
-#pragma once
 #include <iostream>
 #include <exception>
 
@@ -13,7 +12,7 @@ class Array
         unsigned int size_arr;
     public:
         Array();
-        Array(const Array *to_copy);
+        Array(const Array &to_copy);
         Array &operator=(const Array &original);
         ~Array();
 
@@ -26,10 +25,9 @@ class Array
     class LimitsExceptions : public std::exception 
     {
         public: 
-            virtual const char * what() const throw();
-    }
+            virtual const char *what() const throw();
+    };
 };
-
 #include "Array.tpp"
 
 #endif

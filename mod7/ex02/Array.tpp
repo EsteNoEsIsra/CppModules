@@ -1,16 +1,18 @@
-#include "Array.h"
+#ifndef ARRAY_TPP
+# define ARRAY_TPP
+
 
 template<typename T>
-Array<T>::Array() : arrData(0), size_arr(0){    }
+Array<T>::Array() : arrData(NULL), size_arr(0){    }
 
 template<typename T>
 Array<T>::Array(unsigned int n) : arrData(new T[n]), size_arr(n){    }
 template<typename T>
-Array<T>::Array(const Array<T> *to_copy) : arrData(new T[to_copy.size_arr]), size_arr(to_copy->size_arr)
+Array<T>::Array(const Array<T> &to_copy) : arrData(new T[to_copy.size_arr]), size_arr(to_copy.size_arr)
 {
     for (unsigned int i = 0; i < size_arr; i++)
     {
-        arrData[i] = to_copy->arrData[i];
+        arrData[i] = to_copy.arrData[i];
     }
 }
 
@@ -19,13 +21,13 @@ Array<T> &Array<T>::operator=(const Array<T> &original)
 {
     if (this != &original)
     {
-        delete [] arrData;
+        delete[] arrData;
         size_arr = original.size_arr;
         arrData = new T[size_arr];
-          for (unsigned int i = 0; i < size_arr; i++)
-    {
-        arrData[i] = original->arrData[i];
-    }
+        for (unsigned int i = 0; i < size_arr; i++)
+        {
+            arrData[i] = original.arrData[i];
+        }
     }
     return *this;
 }
@@ -58,5 +60,7 @@ unsigned int Array<T>::size() const
 template<typename T>
 const char *Array<T>::LimitsExceptions::what() const throw()
 {
-    return ("Error: index out of bounds")
+    return ("index out of bounds");
 }
+
+#endif
