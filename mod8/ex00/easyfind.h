@@ -1,8 +1,8 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-# include<algorithm>
-# include<exception>
+# include <algorithm>
+# include <exception>
 
 
 class NotFoundExeption : public std::exception
@@ -12,7 +12,6 @@ class NotFoundExeption : public std::exception
 		{
 			return ("Number not found in the container");
 		}
-	
 };
 
 template <typename T>
@@ -25,6 +24,5 @@ typename T::iterator easyfind(T &container, int n)
 		throw NotFoundExeption();
 	return (it);
 }
-
 
 #endif
