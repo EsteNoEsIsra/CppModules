@@ -1,7 +1,7 @@
-NAME = whatever
+NAME = span
 
-SRC = main.cpp 
-HDR = whatever.h
+SRC = main.cpp Span.cpp
+HDR = Span.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf
