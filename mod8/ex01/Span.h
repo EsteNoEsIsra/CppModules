@@ -29,12 +29,12 @@ class Span
 
         void addMultipleNumbers(int max);
 
-        void shortestSpan();
-        void longestSpan();
+        unsigned int shortestSpan();
+        unsigned int longestSpan();
 
     class NoAddingOutofClass : public std::exception
     {
-        virtual const char *what() throw()
+        virtual const char *what() const throw()
         {
             return "You cant add Outside of the class";
         }
