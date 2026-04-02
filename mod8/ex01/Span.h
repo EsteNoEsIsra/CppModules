@@ -17,8 +17,10 @@ class Span
     private:
         std::vector<int> v_container;
         unsigned int N;
-    public:
+
         Span();
+    public:
+     
         Span(const Span &to_copy);
         Span&operator=(const Span &original);
         ~Span();
@@ -32,11 +34,26 @@ class Span
         unsigned int shortestSpan();
         unsigned int longestSpan();
 
-    class NoAddingOutofClass : public std::exception
+    class Fullcontainer : public std::exception
     {
         virtual const char *what() const throw()
         {
-            return "You cant add Outside of the class";
+            return "The container is full";
+        }
+    };
+
+      class EmptyContainer : public std::exception
+    {
+        virtual const char *what() const throw()
+        {
+            return "Cannot operate a empty container";
+        }
+    };
+      class NotEnoughElements : public std::exception
+    {
+        virtual const char *what() const throw()
+        {
+            return "Not Enough Elements to operate";
         }
     };
 
