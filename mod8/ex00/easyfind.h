@@ -4,7 +4,6 @@
 # include <algorithm>
 # include <exception>
 
-
 class NotFoundExeption : public std::exception
 {
 	public:

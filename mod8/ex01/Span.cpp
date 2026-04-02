@@ -40,23 +40,23 @@ void Span::addMultipleNumbers(int max)
 
 unsigned int Span::shortestSpan()
 {
-   if ( v_container.size() < 2 )
+    if ( v_container.size() < 2 )
         throw NotEnoughElements();
     unsigned int  min = Span::longestSpan();
 
+    std::vector<int>::iterator it = v_container.begin();
 
-
-    for ( std::vector<int>::iterator it = v_container.begin(); it != v_container.end(); ++it ) 
-    {
-        for ( std::vector<int>::iterator it2 = v_container.begin(); it2 != v_container.end(); ++it2 ) 
-        {
-            if ( it == it2 ) continue;
-            if ( std::abs( *it2 - *it ) <  static_cast< int >( min ) )
-                min = std::abs( *it2 - *it );
-        }
-    }
+        
+    // for ( std::vector<int>::iterator it = v_container.begin(); it != v_container.end(); ++it ) 
+    // {
+    //     for ( std::vector<int>::iterator it2 = v_container.begin(); it2 != v_container.end(); ++it2 ) 
+    //     {
+    //         if ( it == it2 ) continue;
+    //         if ( std::abs( *it2 - *it ) <  static_cast< int >( min ) )
+    //             min = std::abs( *it2 - *it );
+    //     }
+    // }
     return min;
-
 }
 
 unsigned int Span::longestSpan()
