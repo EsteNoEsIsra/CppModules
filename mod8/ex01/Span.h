@@ -1,8 +1,6 @@
 #ifndef SPAN_H
 #define SPAN_H
 
-#include <deque>
-#include <list>
 #include <vector>
 #include <iostream>
 #include <exception>
