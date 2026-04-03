@@ -28,6 +28,7 @@ class Span
         Span(unsigned int _n);
 
         void addNumber(int nbr);
+        void addNumber(std::vector<int>::iterator _begin, std::vector<int>::iterator _end);
 
         void addMultipleNumbers(int max);
 

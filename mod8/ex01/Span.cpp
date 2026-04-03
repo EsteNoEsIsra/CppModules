@@ -22,18 +22,38 @@ Span::~Span(){}
 
 void Span::addNumber(int nbr)
 {
-    if (v_container.size() > N)
+    if (v_container.size() >= N)
     {
         throw Fullcontainer();
     }   
     this->v_container.push_back(nbr);
 }
+
+void Span::addNumber(std::vector<int>::iterator _begin, std::vector<int>::iterator _end)
+{
+    srand(time(0));
+    if (std::distance(_begin,_end) + v_container.size() >= N)
+        throw Fullcontainer() ;
+    else 
+    {
+        for (std::vector<int>::iterator it = _begin; it != _end; ++it)
+        {
+            v_container.insert(v_container.end(), 1 , rand() % 100);
+        }
+    }
+    
+}
+
 void Span::addMultipleNumbers(int max)
 {
     srand(time(0));
+    int jump = 0;
+    if (max < 10)
+        jump = 50;
+
     for (int i = 0; i < max; i++)
     {
-        int a = rand() % 1000000;
+        int a = rand() % max + jump;
         addNumber(a);    
     }
 }
@@ -43,10 +63,30 @@ unsigned int Span::shortestSpan()
     if ( v_container.size() < 2 )
         throw NotEnoughElements();
     unsigned int  min = Span::longestSpan();
+    std::sort(v_container.begin(), v_container.end());
 
-    std::vector<int>::iterator it = v_container.begin();
-
+    std::vector<int>::iterator it1 = v_container.begin();
+    std::vector<int>::iterator it2 = v_container.begin() + 1;
         
+    while (it1 != v_container.end())
+    {
+        if (*it1 != *it2)
+        {
+            int tmp = std::abs(*it2 - *it1);    
+            if( tmp < static_cast<int>(min))
+            min = tmp;
+        }
+        ++it1;
+        ++it2;
+    }
+    
+    // for (; it1 < v_container.end(); )
+    // {
+    //     /* code */
+    // }
+    
+    
+
     // for ( std::vector<int>::iterator it = v_container.begin(); it != v_container.end(); ++it ) 
     // {
     //     for ( std::vector<int>::iterator it2 = v_container.begin(); it2 != v_container.end(); ++it2 ) 
