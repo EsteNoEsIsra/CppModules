@@ -1,7 +1,7 @@
-NAME = whatever
+NAME = mutantstack
 
 SRC = main.cpp 
-HDR = whatever.h
+HDR = MutantStack.h MutantStack.tpp
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf
