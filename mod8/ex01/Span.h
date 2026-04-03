@@ -1,14 +1,15 @@
 #ifndef SPAN_H
-#define SPAN_H
+# define SPAN_H
 
-#include <vector>
-#include <iostream>
-#include <exception>
-#include <cstdlib>
-#include <ctime>
-#include <algorithm>
-
-#pragma once
+# include <vector>
+# include <ostream>
+# include <iostream>
+# include <exception>
+# include <cstdlib>
+# include <ctime>
+# include <algorithm>
+ 
+# pragma once
 
 class Span
 {
@@ -32,6 +33,10 @@ class Span
 
         unsigned int shortestSpan();
         unsigned int longestSpan();
+
+        const std::vector<int> getContainer() const ;
+
+        
 
     class Fullcontainer : public std::exception
     {
@@ -57,5 +62,7 @@ class Span
     };
 
 };
+
+    std::ostream &operator<<(std::ostream &os, const Span &og);
 
 #endif

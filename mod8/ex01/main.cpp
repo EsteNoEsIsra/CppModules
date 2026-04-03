@@ -17,8 +17,14 @@ int main( void )
         //sp.addMultipleNumbers(4);
         //sp.addMultipleNumbers(5);
 
+        std::cout << "Container: "<< sp ;
+        std::cout << std::endl;
+
+
         std::cout << "Shortest: " << sp.shortestSpan() << std::endl;
+
         std::cout << "Longest: " << sp.longestSpan() << std::endl;    
+
     }
     catch(const std::exception& e)
     {
