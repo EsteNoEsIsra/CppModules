@@ -16,16 +16,17 @@ class RPN
         std::stack<double> stack_c;
 
         RPN();
-        RPN(const RPN &to_copy);
-        RPN &operator=(const RPN &original);
-        ~RPN();
+        
+      
+        
         double doOperation(int c);
         
     public:
-        static RPN* getInstance();  
-
-        
-        RPN(std::string &input);
+        static RPN getInstance();  
+        ~RPN();
+          RPN &operator=(const RPN &original);
+        RPN(std::string &input);   
+        RPN(const RPN &to_copy);
 
         double calculateRPN(const std::string &input);
    

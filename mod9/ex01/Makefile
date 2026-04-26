@@ -3,7 +3,7 @@ NAME = RPN
 SRC = main.cpp RPN.cpp
 HDR = RPN.h 
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
+FLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 RM = rm -rf
 OBJS_DIR = objs
 

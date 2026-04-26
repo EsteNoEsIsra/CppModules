@@ -15,9 +15,9 @@ RPN &RPN::operator=(const RPN &original)
 
 RPN::~RPN(){}
 
-RPN* RPN::getInstance()
+RPN RPN::getInstance()
 {
-    static RPN *instance;
+    static RPN instance;
     return instance;
 }
 
@@ -34,15 +34,15 @@ static bool isOperation(int c)
 static double check_divsion(double a, double b)
 {
     if (b == 0)
-        RPN::DivOnCero();
+       throw RPN::DivOnCero();
     return (a / b);
 }
 
 double RPN::doOperation(int c)
 {
-    double a = stack_c.top();
-    stack_c.pop();
     double b = stack_c.top();
+    stack_c.pop();
+    double a = stack_c.top();
     stack_c.pop();
 
     double aux = 0;
@@ -69,7 +69,7 @@ double RPN::doOperation(int c)
 
 static bool isCorrectString(const std::string &in)
 {
-    if (std::isdigit(in[0]))
+    if (!std::isdigit(in[0]))
         return false;
     for (size_t i = 1; i < in.size(); i++)
     {
@@ -87,7 +87,6 @@ static bool isCorrectString(const std::string &in)
     return true;
 }
 
-// 8 9 * 9 - 9 - 9 - 4 - 1 +
 double RPN::calculateRPN(const std::string &input)
 {
     double result = 0;
@@ -102,12 +101,12 @@ double RPN::calculateRPN(const std::string &input)
         if (std::isdigit(input[i]))
         {
             num = input[i] - '0';
-            stack_c.push(num);
+            this->stack_c.push(num);
         }
         else if (isOperation(input[i]) && stack_c.size() > 1)
         {
             double res = doOperation(input[i]);
-            stack_c.push(res);
+            this->stack_c.push(res);
         }
         else
         {
@@ -120,7 +119,8 @@ double RPN::calculateRPN(const std::string &input)
          std::cout << "result: "<< result<< std::endl; 
     }  
     else
-        std::cout << "debug No deberia llegar aqui V2"<< std::endl;
+        std::cout << "result: "<< result<< std::endl;
+        
     return result;
 }
 
