@@ -26,9 +26,6 @@ static bool isOperation(int c)
     if (c == '+' || c == '-' || c == '*' || c == '/')
         return true;
     return false;
-    /*
-   
-*/
 }
 
 static double check_divsion(double a, double b)

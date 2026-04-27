@@ -1,4 +1,4 @@
-NAME = mutantstack
+NAME = btc
 
 SRC = main.cpp 
 HDR = MutantStack.h MutantStack.tpp
