@@ -2,8 +2,15 @@
 #include "BitcoinExchange.h"
 
 
-int main() 
+int main(int ar, char **argv) 
 {
+    if (ar != 2)
+    {
+        std::cout << "missing arguments" << std::endl;
+        return 1;
+    }
+
+
     std::map<std::string, int> dataMap;
     std::ifstream file("data.csv");
     std::string line;
@@ -13,7 +20,7 @@ int main()
         return 1;
     }
 
-    // 1. Leer la primera línea (cabecera) para saltarla
+    // 1. Leer la primera línea (cabecera) para s   altarla
     std::getline(file, line);
 
     // 2. Leer el resto de líneas

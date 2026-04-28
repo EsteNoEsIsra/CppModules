@@ -13,16 +13,19 @@
 class BitcoinExchange
 {
     private:
-        std::map<std::string , int> map_c;
+        std::map<std::string , double> _data_map;
+        std::ifstream _file_data;
         std::string _dates;
-        int _value_num ; 
+        double _value_num ; 
 
     public:
         BitcoinExchange();
+        BitcoinExchange(char *filename, char *datafile);
         BitcoinExchange(const BitcoinExchange &to_copy);
         BitcoinExchange& operator=(const BitcoinExchange &original);
         ~BitcoinExchange();
 
+        void fecthDataFromFile(char *file);
 
     class ReadFailed : public std::exception
     {
