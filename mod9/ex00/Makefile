@@ -1,7 +1,7 @@
 NAME = btc
 
-SRC = main.cpp 
-HDR = MutantStack.h MutantStack.tpp
+SRC = main.cpp  BitcoinExchange.cpp
+HDR = BitcoinExchange.h
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf

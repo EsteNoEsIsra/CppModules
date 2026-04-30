@@ -14,20 +14,25 @@ class BitcoinExchange
 {
     private:
         std::map<std::string , double> _data_map;
-        std::ifstream _file_data;
-        std::string _dates;
-        double _value_num ; 
+        const char *_file_data;
+    
 
     public:
         BitcoinExchange();
-        BitcoinExchange(char *filename, char *datafile);
+        BitcoinExchange(const char *datafile);
         BitcoinExchange(const BitcoinExchange &to_copy);
         BitcoinExchange& operator=(const BitcoinExchange &original);
         ~BitcoinExchange();
 
-        void fecthDataFromFile(char *file);
+        void fecthDataFromFile(const char *file);
+        void exchangeBitcoins(const char* file_in);
+        const char *getFiledataName();
 
     class ReadFailed : public std::exception
+    {
+        virtual const char* what() const throw();
+    };
+    class BadInput : public std::exception
     {
         virtual const char* what() const throw();
     };

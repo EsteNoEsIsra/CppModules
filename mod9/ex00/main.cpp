@@ -10,6 +10,41 @@ int main(int ar, char **argv)
         return 1;
     }
 
+    try
+    {
+        BitcoinExchange bitcoin("data2.csv");
+        bitcoin.fecthDataFromFile(bitcoin.getFiledataName());
+        bitcoin.exchangeBitcoins(argv[1]);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+
+    
+
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+/*
+
+int main(int ar, char **argv) 
+{
+    if (ar != 2)
+    {
+        std::cout << "missing arguments" << std::endl;
+        return 1;
+    }
+
 
     std::map<std::string, int> dataMap;
     std::ifstream file("data.csv");
@@ -54,3 +89,6 @@ int main(int ar, char **argv)
 
     return 0;
 }
+    
+
+*/
