@@ -9,7 +9,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
-
+#include <limits.h>
 class BitcoinExchange
 {
     private:

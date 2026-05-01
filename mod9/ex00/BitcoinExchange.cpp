@@ -78,17 +78,66 @@ void BitcoinExchange::printLine(std::string date ,double n)
     else
         std::cerr << "Error: printline" << std::endl;
 }
+static bool check_date(int y, int m, int d)
+{
+    if (d > 31 || d < 0)
+    {
+        std::cout << "Error: day in valid" << std::endl;
+        return false;
+    }
+    if (m > 12 || m < 0)
+    {
+        std::cout << "Error: month in valid" << std::endl;
+        return false;
+    }
+    if (y < 2009 || y < 0)
+    {
+        std::cout << "Error: year in valid" << std::endl;
+        return false;
+    }
+    return true;
+}
 
 bool BitcoinExchange::isValidDate(std::string date)
 {
+    size_t posFirts = date.find("-");
+    size_t posSecond = date.find("-", posFirts + 1);
+    if (posFirts != std::string::npos && posSecond != std::string::npos)
+    {
+        std::string s_year = date.substr(0,posFirts);
+        std::string s_month = date.substr(posFirts+1 , posFirts - posSecond - 1);
+        std::string s_day = date.substr(posSecond+1);
 
-
+        int year = std::atoi(s_year.c_str());
+        int month = std::atoi(s_month.c_str());
+        int day = std::atoi(s_day.c_str());
+        if (!check_date(year, month,day))
+            return false;
+    }
+    else 
+    {
+        std::cerr << "Error: Invalid date" << std::endl;
+        return false;
+    }
+    
 }
 
 bool BitcoinExchange::isValidValue(std::string value)
 {
     std::stringstream ss (value);
     double val;
+    if (!(ss >> val) || val < 0)
+    {
+        std::cout << "Error: is not a positive number" << std::endl;
+        return false;
+    }
+    else if (val >= INT_MAX)
+    {
+        std::cout << "Error: too large value" << std::endl;
+        return false;
+    }
+
+    return true;
 // std::stringstream ss(parteValor);
 //     int valor;
 //     if (!(ss >> valor) || valor < 0) {
