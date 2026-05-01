@@ -65,13 +65,27 @@ void BitcoinExchange::exchangeBitcoins(const char* file_in)
     
 }
 
-static bool isValidDate(std::string date)
+void BitcoinExchange::printLine(std::string date ,double n)
+{
+    std::map<std::string, double>::iterator it;
+    it = this->_data_map.find(date);
+
+    if (it != this->_data_map.end())
+    {
+        double value = it->second;
+        std::cout << date << " => " << n << " = " << n * value;
+    }
+    else
+        std::cerr << "Error: printline" << std::endl;
+}
+
+bool BitcoinExchange::isValidDate(std::string date)
 {
 
 
 }
 
-static bool isValidValue(std::string value)
+bool BitcoinExchange::isValidValue(std::string value)
 {
     std::stringstream ss (value);
     double val;
@@ -83,6 +97,8 @@ static bool isValidValue(std::string value)
  //   }
 }
 
+
+std::map<std::string , double>& BitcoinExchange::getMapcontainer(){ return (_data_map); }
 
 
 void BitcoinExchange::fecthDataFromFile(const char * file)

@@ -16,7 +16,9 @@ class BitcoinExchange
         std::map<std::string , double> _data_map;
         const char *_file_data;
     
-
+        bool isValidDate(std::string date);
+        bool isValidValue(std::string value);
+        void printLine(std::string date ,double n);
     public:
         BitcoinExchange();
         BitcoinExchange(const char *datafile);
@@ -27,6 +29,8 @@ class BitcoinExchange
         void fecthDataFromFile(const char *file);
         void exchangeBitcoins(const char* file_in);
         const char *getFiledataName();
+
+        std::map<std::string , double>&getMapcontainer();
 
     class ReadFailed : public std::exception
     {
