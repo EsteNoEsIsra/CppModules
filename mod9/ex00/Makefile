@@ -3,7 +3,7 @@ NAME = btc
 SRC = main.cpp  BitcoinExchange.cpp
 HDR = BitcoinExchange.h
 CC = c++
-FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
+FLAGS = -Wall -Wextra -Werror -std=c++98 -g 
 RM = rm -rf
 OBJS_DIR = objs
 

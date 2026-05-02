@@ -12,7 +12,7 @@ int main(int ar, char **argv)
 
     try
     {
-        BitcoinExchange bitcoin("data2.csv");
+        BitcoinExchange bitcoin("data.csv");
         bitcoin.fecthDataFromFile(bitcoin.getFiledataName());
         bitcoin.exchangeBitcoins(argv[1]);
     }
