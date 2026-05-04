@@ -59,53 +59,26 @@ void BitcoinExchange::exchangeBitcoins(const char* file_in)
         }
         else
         {
-            std::cerr << "Error: bad input" << std::endl;
+            ///// check
+            std::cerr << "Error: bad input => " << line.substr(0,pos) << std::endl;
         }
     }
 }
 
-/*
-void BitcoinExchange::printLine(std::string date, double n)
+void BitcoinExchange::printLine(std::string date ,double n)
 {
-    // lower_bound busca el primero que sea >= date
-    std::map<std::string, double>::iterator it = this->_data_map.lower_bound(date);
+    std::map<std::string, double>::iterator it; 
+    it = this->_data_map.lower_bound(date);
 
-    // Si no es la fecha exacta y no es el principio del map, retrocedemos
-    if (it != _data_map.begin() && (it == _data_map.end() || it->first != date))
-    {
+    if (it != this->_data_map.begin() && (it == this->_data_map.end() || it->first != date))
         --it;
-    }
-
-    // Verificamos si después del ajuste estamos en un lugar válido
-    // (Por ejemplo, si la fecha pedida es más antigua que la primera del CSV)
-    if (it != _data_map.end() && it->first <= date)
+    if(it != this->_data_map.end() && it->first <= date)
     {
         double value = it->second;
         std::cout << date << " => " << n << " = " << n * value << std::endl;
     }
     else
-    {
-        // Caso donde la fecha es menor a la fecha más antigua de tu base de datos
-        std::cerr << "Error: no data available for date " << date << std::endl;
-    }
-}
-
-*/
-
-
-
-void BitcoinExchange::printLine(std::string date ,double n)
-{
-    std::map<std::string, double>::iterator it = this->_data_map.lower_bound(date);
-    it = this->_data_map.find(date);
-
-    if (it != this->_data_map.end())
-    {
-        double value = it->second;
-        std::cout << date << " => " << n << " = " << n * value;
-    }
-    else
-        std::cerr << "Error: printline" << std::endl;
+        std::cerr << "Error: NoData from that date" << std::endl;
 }
 static bool check_date(int y, int m, int d)
 {
@@ -157,7 +130,10 @@ bool BitcoinExchange::isValidValue(std::string value)
     double val;
     if (!(ss >> val) || val < 0)
     {
-        std::cout << "Error: is not a positive number" << std::endl;
+        if (val < 0)
+            std::cout << "Error: is not a positive number" << std::endl;
+        else 
+            std::cout << "Error: invalid Value" << std::endl;
         return false;
     }
     else if (val >= INT_MAX)
