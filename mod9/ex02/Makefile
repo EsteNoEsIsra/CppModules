@@ -1,7 +1,7 @@
-NAME = mutantstack
+NAME = PmergeMe
 
 SRC = main.cpp 
-HDR = MutantStack.h MutantStack.tpp
+HDR = PmergeMe.h PmergeMe.cpp
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf
