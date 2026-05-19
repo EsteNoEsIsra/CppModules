@@ -3,6 +3,7 @@
 #include <iostream>
 #include <cctype>
 #include <cstdlib>
+#include <limits>
 
 int checkDigits(char *c)
 {
@@ -20,9 +21,13 @@ int checkDigits(char *c)
 int checkArgs(char **arg)
 {
     int i = 1;
+    long long max_v; 
     while (arg[i])
     {
         if (!checkDigits(arg[i]))
+            return 0;
+        max_v = std::atol(arg[i]);
+        if (max_v >= std::numeric_limits<int>::max())
             return 0;
         i++;
     }
@@ -42,6 +47,7 @@ int main(int ar, char *av[])
         return 1;
     }
     std::cout << "llega bien" << std::endl;
+    //  ya no se que paso 
     
     return 0;
 }
