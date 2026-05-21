@@ -13,11 +13,12 @@ class PmergeMe
         PmergeMe &operator=(const PmergeMe& original);
         ~PmergeMe();
 
+        PmergeMe(char** argv, int ar);
 
-
-        void setVecContainer();
-        void setDeqContainer();
+        void setVecContainer(int n);
+        void setDeqContainer(int n);
 
         std::vector<int>& getVecContainer();
         std::deque<int>& getDeqContainer();
+
 };

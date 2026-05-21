@@ -47,7 +47,8 @@ int main(int ar, char *av[])
         return 1;
     }
     std::cout << "llega bien" << std::endl;
-    //  ya no se que paso 
+
+    PmergeMe pme(av,ar-1);
     
     return 0;
 }
