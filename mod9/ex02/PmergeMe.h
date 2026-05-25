@@ -1,7 +1,14 @@
-#pragma once 
+#ifndef PMERGEME_H
+#define PMERGEME_H
 #include <iostream>
 #include <vector>
 #include <deque>
+#include <cctype>
+#include <cstdlib>
+#include <ctime>
+#include <limits>
+#include <iomanip>
+
 class PmergeMe
 {
     private:
@@ -21,4 +28,8 @@ class PmergeMe
         std::vector<int>& getVecContainer();
         std::deque<int>& getDeqContainer();
 
+        void printContainer_vec(std::vector<int> vec);
+        void printContainer_deq(std::deque<int> deq);
 };
+
+#endif

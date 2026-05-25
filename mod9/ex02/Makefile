@@ -1,7 +1,7 @@
 NAME = PmergeMe
 
-SRC = main.cpp 
-HDR = PmergeMe.h PmergeMe.cpp
+SRC = main.cpp PmergeMe.cpp
+HDR = PmergeMe.h 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98 -ggdb
 RM = rm -rf

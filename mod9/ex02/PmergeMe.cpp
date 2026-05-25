@@ -13,15 +13,15 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& original)
     return *this;
 }
 
-PmergeMe::~PmergeMe()
-{}
 
 PmergeMe::PmergeMe(char** argv, int ar)
 {
     
     for (int i = 1; i < ar ; i++)
     {
-        
+        int val = std::atoi(argv[i]);
+        setDeqContainer(val);
+        setVecContainer(val);
     }
     
 }
@@ -43,3 +43,27 @@ std::deque<int>& PmergeMe::getDeqContainer()
 {
     return this->_de_con;
 }
+void PmergeMe::printContainer_vec(std::vector<int> vec)
+{
+    std::vector<int>::iterator it = vec.begin();
+    std::cout << "Vector: " ;
+    for (; it != vec.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+
+}
+
+void PmergeMe::printContainer_deq(std::deque<int> deq)
+{
+     std::deque<int>::iterator it = deq.begin();
+    std::cout << "Deque: " ;
+    for (; it != deq.end(); ++it)
+    {
+        std::cout << *it << " ";
+    }
+    std::cout << std::endl;
+}
+PmergeMe::~PmergeMe()
+{}
