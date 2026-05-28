@@ -17,16 +17,29 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& original)
 PmergeMe::PmergeMe(char** argv, int ar)
 {
     
-    for (int i = 1; i < ar ; i++)
-    {
-        int val = std::atoi(argv[i]);
-        setDeqContainer(val);
-        setVecContainer(val);
-    }
-    
+    // for (int i = 1; i < ar ; i++ )
+    // {
+    //     int val = std::atoi(argv[i]);  
+    //     setDeqContainer(val);
+    //     setVecContainer(val);
+    // }
+
+    makePairs(argv, ar);
 }
 
+void PmergeMe::makePairs(char** argv, int ar)
+{
+    if ((ar -1) % 2 == 0)
 
+    for (int i = 1; i < ar ; i += 2)
+    {
+        int val = std::atoi(argv[i]);
+        int val2 = std::atoi(argv[i+1]);
+        if (i + 1 < ar)
+            pairlist.push_back(std::make_pair(val,val2));
+    }
+    //arreglar
+}
 void PmergeMe::setVecContainer(int n)
 {
     this->_v_con.push_back(n);

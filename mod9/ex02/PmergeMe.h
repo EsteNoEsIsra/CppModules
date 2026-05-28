@@ -9,11 +9,14 @@
 #include <limits>
 #include <iomanip>
 
+
 class PmergeMe
 {
     private:
         std::vector<int> _v_con;
         std::deque<int> _de_con;
+
+        std::vector<std::pair<int, int>> pairlist;
     public:
         PmergeMe();
         PmergeMe(const PmergeMe &to_copy);
@@ -30,6 +33,9 @@ class PmergeMe
 
         void printContainer_vec(std::vector<int> vec);
         void printContainer_deq(std::deque<int> deq);
+
+        void makePairs(char** argv, int ar);
+
 };
 
 #endif

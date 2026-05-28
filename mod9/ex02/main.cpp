@@ -48,6 +48,9 @@ int main(int ar, char **av)
     pme.printContainer_deq(pme.getDeqContainer());
     clock_t init_time_vec = clock();
 
+    
+
+
     std::cout << "---------------- sorted-------------------" <<std::endl;
 
 
