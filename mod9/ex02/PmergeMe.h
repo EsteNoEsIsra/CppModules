@@ -8,6 +8,7 @@
 #include <ctime>
 #include <limits>
 #include <iomanip>
+#include <algorithm>
 
 
 class PmergeMe
@@ -16,9 +17,17 @@ class PmergeMe
         std::vector<int> _v_con;
         std::deque<int> _de_con;
 
-        std::vector<std::pair<int, int>> pairlist;
-    public:
+        bool hasleftover;
+        int leftover;
+        
+        std::vector<std::pair<int, int> >pairlist;
+
+        std::vector<int> mainChain;
+        std::vector<int> pend;
+
         PmergeMe();
+    public:
+        
         PmergeMe(const PmergeMe &to_copy);
         PmergeMe &operator=(const PmergeMe& original);
         ~PmergeMe();
@@ -35,7 +44,9 @@ class PmergeMe
         void printContainer_deq(std::deque<int> deq);
 
         void makePairs(char** argv, int ar);
-
+        void buildMain();
+        void insertPend();
+        void mergeInsertFJ(std::vector<std::pair<int, int> >&pair);
 };
 
 #endif

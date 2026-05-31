@@ -44,8 +44,9 @@ int main(int ar, char **av)
     } 
     PmergeMe pme(av,ar);
     std::cout << "---------------- unsorted-------------------" <<std::endl;
-    pme.printContainer_vec(pme.getVecContainer());
-    pme.printContainer_deq(pme.getDeqContainer());
+    
+    // pme.printContainer_vec(pme.getVecContainer());
+    // pme.printContainer_deq(pme.getDeqContainer());
     clock_t init_time_vec = clock();
 
     
