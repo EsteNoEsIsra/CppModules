@@ -30,7 +30,7 @@ PmergeMe::PmergeMe(char** argv, int ar)
     buildMain();
     
     mergeInsertFJ(pairlist);
-    std::sort(mainChain.begin(),mainChain.end());
+   // std::sort(mainChain.begin(),mainChain.end());
     insertPend();
     printContainer_vec(mainChain);
 }
