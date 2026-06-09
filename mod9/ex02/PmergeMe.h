@@ -32,7 +32,7 @@ class PmergeMe
         PmergeMe &operator=(const PmergeMe& original);
         ~PmergeMe();
 
-        PmergeMe(char** argv, int ar);
+        PmergeMe(int ar);
 
         void setVecContainer(int n);
         void setDeqContainer(int n);
@@ -46,7 +46,8 @@ class PmergeMe
         void makePairs(char** argv, int ar);
         void buildMain();
         void insertPend();
-        void mergeInsertFJ(std::vector<std::pair<int, int> >&pair);
+        void mergeInsertFJ(std::vector<std::pair<int, int> >&pairs);
+        void makeFordJonson(char** argv, int ar);
 };
 
 #endif

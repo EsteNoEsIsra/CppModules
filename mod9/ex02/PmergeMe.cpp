@@ -18,21 +18,26 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& original)
     return *this;
 }
 
-PmergeMe::PmergeMe(char** argv, int ar)
+PmergeMe::PmergeMe(int ar)
 {
    
     if (((ar - 1 ) % 2 )== 0)
         hasleftover = false;
     else 
         hasleftover = true;
+
     
+}
+
+void PmergeMe::makeFordJonson(char** argv, int ar)
+{
     makePairs(argv, ar);
-    buildMain();
-    
-    mergeInsertFJ(pairlist);
-   // std::sort(mainChain.begin(),mainChain.end());
+    mergeInsertFJ(pairlist); // primero ordenar los pares recursivamente
+    buildMain();             // luego construir mainChain con el orden correcto
     insertPend();
+    // std::sort(mainChain.begin(),mainChain.end());
     printContainer_vec(mainChain);
+
 }
 
 void PmergeMe::makePairs(char** argv, int ar)
@@ -64,24 +69,118 @@ void PmergeMe::buildMain()
    
 }   
 
+static std::vector<int> jhOrder(int n)
+{
+    // Genera los números de Jacobsthal hasta superar n
+    std::vector<int> jac;
+    jac.push_back(0);
+    jac.push_back(1);
+    while (true)
+    {
+        int next = jac[jac.size() - 1] + 2 * jac[jac.size() - 2];
+        if (next > n)
+            break;
+        jac.push_back(next);
+    }
+
+    // Construir el orden de inserción usando Jacobsthal
+    std::vector<int> order;
+    std::vector<bool> inserted(n + 1, false);
+
+    for (size_t k = 2; k < jac.size(); k++)
+    {
+        // Insertar desde jac[k] hasta jac[k-1]+1, de mayor a menor
+        for (int idx = jac[k]; idx > jac[k - 1]; idx--)
+        {
+            if (idx <= n)
+            {
+                order.push_back(idx - 1); // índice base 0
+                inserted[idx - 1] = true;
+            }
+        }
+    }
+    // Los que sobren (si los hubiera)
+    for (int i = 0; i < n; i++)
+        if (!inserted[i])
+            order.push_back(i);
+
+    return order;
+}
+
 void PmergeMe::insertPend()
 {
-    std::vector<int>::iterator pos;
+    if (pend.empty())
+        return;
+
+    // pend[0] siempre va al inicio (su par mayor es el menor de mainChain)
     mainChain.insert(mainChain.begin(), pend[0]);
-    for (size_t i = 1; i < pend.size(); i++)
+
+    if (pend.size() == 1)
     {
-        pos = std::lower_bound(mainChain.begin(), mainChain.end(), pend[i]);
-        mainChain.insert(pos, pend[i]);
+        if (hasleftover)
+        {
+            std::vector<int>::iterator pos =
+                std::lower_bound(mainChain.begin(), mainChain.end(), leftover);
+            mainChain.insert(pos, leftover);
+        }
+        return;
+    }
+
+    std::vector<int> order = jhOrder(pend.size());
+
+    for (size_t i = 0; i < order.size(); i++)
+    {
+        int idx = order[i];
+        if (idx == 0)  // ya insertado
+            continue;
+
+        int val = pend[idx];
+
+        // El límite del binary search es la posición del par mayor en mainChain
+        // pairlist[idx].first es el mayor que corresponde a pend[idx]
+        std::vector<int>::iterator bound =
+            std::find(mainChain.begin(), mainChain.end(), pairlist[idx].first);
+
+        std::vector<int>::iterator pos =
+            std::lower_bound(mainChain.begin(), bound, val);
+        mainChain.insert(pos, val);
     }
     if (hasleftover)
     {
-        pos = std::lower_bound(mainChain.begin(), mainChain.end(), leftover);
+        std::vector<int>::iterator pos = std::lower_bound(mainChain.begin(), mainChain.end(), leftover);
         mainChain.insert(pos, leftover);
     }
 }
-void PmergeMe::mergeInsertFJ(std::vector<std::pair<int, int> >&pair)
+void PmergeMe::mergeInsertFJ(std::vector<std::pair<int, int> >&pairs)
 {
-
+    if (pairs.size() <= 1)
+        return;
+    // Extraer solo los mayores para ordenarlos recursivamente
+    std::vector<std::pair<int, int> > subPairs;
+    for (size_t i = 0; i + 1 < pairs.size(); i += 2)
+    {
+        int a = pairs[i].first;
+        int b = pairs[i + 1].first; 
+        if (a < b)
+            std::swap(pairs[i], pairs[i + 1]);
+        subPairs.push_back(std::make_pair(pairs[i].first, pairs[i + 1].first));
+    }
+    mergeInsertFJ(subPairs);
+    // Reordenar pairlist según el orden resultante de los mayores
+    std::vector<std::pair<int, int> > sorted;
+    for (size_t i = 0; i < subPairs.size(); i++)
+    {
+        for (size_t j = 0; j < pairs.size(); j++)
+        {
+            if (pairs[j].first == subPairs[i].first)
+            {
+                sorted.push_back(pairs[j]);
+                pairs.erase(pairs.begin() + j);
+                break;
+            }
+        }
+    }
+    pairs = sorted;
 }
 
 void PmergeMe::setVecContainer(int n)

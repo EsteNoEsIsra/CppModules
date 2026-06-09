@@ -42,12 +42,15 @@ int main(int ar, char **av)
         std::cout << "Error: invalid input" << std::endl;
         return 1;
     } 
-    PmergeMe pme(av,ar);
-    std::cout << "---------------- unsorted-------------------" <<std::endl;
-    
-    // pme.printContainer_vec(pme.getVecContainer());
-    // pme.printContainer_deq(pme.getDeqContainer());
+    PmergeMe pme(ar);
+    std::cout << "---------------- unsorted-------------------" <<std::endl;   
+    pme.printContainer_vec(pme.getVecContainer());
+
     clock_t init_time_vec = clock();
+    pme.makeFordJonson(av,ar);
+
+    // pme.printContainer_deq(pme.getDeqContainer());
+    
 
     
 
@@ -56,7 +59,7 @@ int main(int ar, char **av)
 
 
     clock_t final_time_vec = clock();
-
+    pme.printContainer_vec(pme.getVecContainer());
     //tiempo
     double sec = double(final_time_vec - init_time_vec) / CLOCKS_PER_SEC;
    // double microsec = sec * 1000000.0;
