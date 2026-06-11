@@ -153,10 +153,18 @@ void PmergeMe::insertPend()
 }
 void PmergeMe::mergeInsertFJ(std::vector<std::pair<int, int> >&pairs)
 {
+    bool hasOddPair = false;
+    if(pairs.size() % 2 != 0)
+        hasOddPair = true;
+
+    std::pair<int ,int> oddPair;
+    if (hasOddPair)
+        oddPair = pairs.back();
     if (pairs.size() <= 1)
         return;
-    // Extraer solo los mayores para ordenarlos recursivamente
+
     std::vector<std::pair<int, int> > subPairs;
+    std::vector<std::pair<int, int> > subPairs_losers;
     for (size_t i = 0; i + 1 < pairs.size(); i += 2)
     {
         int a = pairs[i].first;
@@ -164,10 +172,15 @@ void PmergeMe::mergeInsertFJ(std::vector<std::pair<int, int> >&pairs)
         if (a < b)
             std::swap(pairs[i], pairs[i + 1]);
         subPairs.push_back(std::make_pair(pairs[i].first, pairs[i + 1].first));
+        subPairs_losers.push_back(std::make_pair(pairs[i].second), pair)
     }
     mergeInsertFJ(subPairs);
+    
     // Reordenar pairlist según el orden resultante de los mayores
     std::vector<std::pair<int, int> > sorted;
+
+    if (hasOddPair)
+        sorted.push_back(oddPair);
     for (size_t i = 0; i < subPairs.size(); i++)
     {
         for (size_t j = 0; j < pairs.size(); j++)
