@@ -11,8 +11,7 @@ static std::vector<size_t> buildJacobsthalOrder(size_t count)
     jacobsthal.push_back(1);
     while (jacobsthal[jacobsthal.size() - 1] < count)
     {
-        size_t next = jacobsthal[jacobsthal.size() - 1]
-            + 2 * jacobsthal[jacobsthal.size() - 2];
+        size_t next = jacobsthal[jacobsthal.size() - 1]  + 2 * jacobsthal[jacobsthal.size() - 2];
         jacobsthal.push_back(next);
     }
 
