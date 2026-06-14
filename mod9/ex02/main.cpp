@@ -43,11 +43,19 @@ int main(int ar, char **av)
         return 1;
     } 
     PmergeMe pme(ar);
+    for (int i = 1; i < ar; ++i)
+    {
+        int value = std::atoi(av[i]);
+        pme.setVecContainer(value);
+        pme.setDeqContainer(value);
+    }
+
     std::cout << "---------------- unsorted-------------------" <<std::endl;   
     pme.printContainer_vec(pme.getVecContainer());
+    pme.printContainer_deq(pme.getDeqContainer());
 
     clock_t init_time_vec = clock();
-    pme.makeFordJonson(av,ar);
+    pme.makeFordJonson();
 
     // pme.printContainer_deq(pme.getDeqContainer());
     
@@ -60,6 +68,7 @@ int main(int ar, char **av)
 
     clock_t final_time_vec = clock();
     pme.printContainer_vec(pme.getVecContainer());
+    pme.printContainer_deq(pme.getDeqContainer());
     //tiempo
     double sec = double(final_time_vec - init_time_vec) / CLOCKS_PER_SEC;
    // double microsec = sec * 1000000.0;

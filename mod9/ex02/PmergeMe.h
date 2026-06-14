@@ -47,7 +47,7 @@ class PmergeMe
         void buildMain();
         void insertPend();
         void mergeInsertFJ(std::vector<std::pair<int, int> >&pairs);
-        void makeFordJonson(char** argv, int ar);
+        void makeFordJonson();
 };
 
 #endif
