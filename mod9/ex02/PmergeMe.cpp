@@ -132,7 +132,6 @@ void PmergeMe::makeFordJonson()
 {
     fordJohnsonSort(_v_con);
     fordJohnsonSort(_de_con);
-
 }
 
 void PmergeMe::makePairs(char** argv, int ar)
