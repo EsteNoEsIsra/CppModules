@@ -28,6 +28,8 @@ class PmergeMe
         PmergeMe();
     public:
         
+        enum Conta {VECTOR = 1, DEQUE = 2};
+
         PmergeMe(const PmergeMe &to_copy);
         PmergeMe &operator=(const PmergeMe& original);
         ~PmergeMe();
@@ -47,7 +49,7 @@ class PmergeMe
         void buildMain();
         void insertPend();
         void mergeInsertFJ(std::vector<std::pair<int, int> >&pairs);
-        void makeFordJonson();
+        void makeFordJonson(int container);
 };
 
 #endif

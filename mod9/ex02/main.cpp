@@ -1,4 +1,3 @@
-// deque  y vector
 #include "PmergeMe.h"
 
 int checkDigits(char *c)
@@ -50,29 +49,30 @@ int main(int ar, char **av)
         pme.setDeqContainer(value);
     }
 
-    std::cout << "---------------- unsorted-------------------" <<std::endl;   
+    std::cout << "---------------- unsorted vector-------------------" <<std::endl;   
     pme.printContainer_vec(pme.getVecContainer());
-    pme.printContainer_deq(pme.getDeqContainer());
-
     clock_t init_time_vec = clock();
-    pme.makeFordJonson();
-
-    // pme.printContainer_deq(pme.getDeqContainer());
-    
-
-    
-
-
-    std::cout << "---------------- sorted-------------------" <<std::endl;
-
-
+    pme.makeFordJonson(pme.VECTOR);
     clock_t final_time_vec = clock();
+    std::cout << "---------------- sorted vector-------------------" <<std::endl;
     pme.printContainer_vec(pme.getVecContainer());
+    
+    std::cout << "---------------- unsorted deque-------------------" <<std::endl;   
+    pme.printContainer_deq(pme.getDeqContainer());
+    clock_t init_time_deq = clock();
+    pme.makeFordJonson(pme.DEQUE);
+    clock_t final_time_deq = clock();  
+
+    std::cout << "---------------- sorted deque-------------------" <<std::endl;
     pme.printContainer_deq(pme.getDeqContainer());
     //tiempo
-    double sec = double(final_time_vec - init_time_vec) / CLOCKS_PER_SEC;
-   // double microsec = sec * 1000000.0;
-    std::cout << "Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec << " us"<<std::endl;
+    double sec_vec = double(final_time_vec - init_time_vec) / CLOCKS_PER_SEC;
+    std::cout << "***VECTOR*** \n  Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec_vec << " us"<<std::endl;
+
+    double sec_deq = double(final_time_deq - init_time_deq) / CLOCKS_PER_SEC;
+    std::cout << "***DEQUE*** \n Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec_deq << " us"<<std::endl;
+
+
     return 0;
 }
  

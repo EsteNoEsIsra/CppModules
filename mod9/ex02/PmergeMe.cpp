@@ -34,29 +34,68 @@ static std::vector<size_t> buildJacobsthalOrder(size_t count)
         }
         previous = jacobsthal[i];
     }
-
     for (size_t i = 0; i < count; ++i)
     {
         if (!used[i])
             order.push_back(i);
     }
-
     return order;
 }
 
-template <typename Container>
-static void fordJohnsonSort(Container &container)
+static std::deque<size_t> buildJacobsthalOrderdeque(size_t count)
+{
+    std::deque<size_t> order;
+    if (count == 0)
+        return order;
+
+    std::deque<size_t> jacobsthal;
+    jacobsthal.push_back(1);
+    jacobsthal.push_back(1);
+    while (jacobsthal[jacobsthal.size() - 1] < count)
+    {
+        size_t next = jacobsthal[jacobsthal.size() - 1]  + 2 * jacobsthal[jacobsthal.size() - 2];
+        jacobsthal.push_back(next);
+    }
+
+    std::deque<bool> used(count, false);
+    size_t previous = 0;
+    for (size_t i = 2; i < jacobsthal.size(); ++i)
+    {
+        size_t end = jacobsthal[i];
+        if (end > count)
+            end = count;
+
+        for (size_t current = end; current > previous; --current)
+        {
+            size_t index = current - 1;
+            if (!used[index])
+            {
+                order.push_back(index);
+                used[index] = true;
+            }
+        }
+        previous = jacobsthal[i];
+    }
+    for (size_t i = 0; i < count; ++i)
+    {
+        if (!used[i])
+            order.push_back(i);
+    }
+    return order;
+}
+
+static void fordJohnsonSort(std::vector<int> &container)
 {
     if (container.size() < 2)
         return;
 
-    typedef typename Container::value_type value_type;
+    typedef typename std::vector<int>::value_type value_type;
     std::vector<value_type> majors;
     std::vector<value_type> minors;
     value_type leftover = value_type();
     bool hasLeftover = false;
 
-    typename Container::const_iterator it = container.begin();
+    typename std::vector<int>::const_iterator it = container.begin();
     while (it != container.end())
     {
         value_type first = *it;
@@ -86,18 +125,71 @@ static void fordJohnsonSort(Container &container)
     for (size_t i = 0; i < order.size(); ++i)
     {
         value_type value = minors[order[i]];
-        typename Container::iterator pos =
-            std::lower_bound(container.begin(), container.end(), value);
+        typename std::vector<int>::iterator pos = std::lower_bound(container.begin(), container.end(), value);
         container.insert(pos, value);
     }
 
     if (hasLeftover)
     {
-        typename Container::iterator pos =
-            std::lower_bound(container.begin(), container.end(), leftover);
+        typename std::vector<int>::iterator pos = std::lower_bound(container.begin(), container.end(), leftover);
         container.insert(pos, leftover);
     }
 }
+
+
+static void fordJohnsonSort_deq(std::deque<int> &container)
+{
+    if (container.size() < 2)
+        return;
+
+    typedef typename std::deque<int>::value_type value_type;
+    std::deque<value_type> majors;
+    std::deque<value_type> minors;
+    value_type leftover = value_type();
+    bool hasLeftover = false;
+
+    typename std::deque<int>::const_iterator it = container.begin();
+    while (it != container.end())
+    {
+        value_type first = *it;
+        ++it;
+        if (it == container.end())
+        {
+            leftover = first;
+            hasLeftover = true;
+            break;
+        }
+
+        value_type second = *it;
+        ++it;
+        if (first < second)
+            std::swap(first, second);
+
+        majors.push_back(first);
+        minors.push_back(second);
+    }
+
+    fordJohnsonSort_deq(majors);
+
+    container.clear();
+    container.insert(container.end(), majors.begin(), majors.end());
+
+    std::deque<size_t> order = buildJacobsthalOrderdeque(minors.size());
+    for (size_t i = 0; i < order.size(); ++i)
+    {
+        value_type value = minors[order[i]];
+        typename std::deque<int>::iterator pos = std::lower_bound(container.begin(), container.end(), value);
+        container.insert(pos, value);
+    }
+
+    if (hasLeftover)
+    {
+        typename std::deque<int>::iterator pos = std::lower_bound(container.begin(), container.end(), leftover);
+        container.insert(pos, leftover);
+    }
+}
+
+
 
 PmergeMe::PmergeMe(): hasleftover(false), leftover(0){}
 
@@ -124,14 +216,14 @@ PmergeMe::PmergeMe(int ar)
         hasleftover = false;
     else 
         hasleftover = true;
-
-    
 }
 
-void PmergeMe::makeFordJonson()
+void PmergeMe::makeFordJonson(int container)
 {
-    fordJohnsonSort(_v_con);
-    fordJohnsonSort(_de_con);
+    if (container == VECTOR)
+        fordJohnsonSort(_v_con);
+    else if (container == DEQUE)
+        fordJohnsonSort_deq(_de_con);
 }
 
 void PmergeMe::makePairs(char** argv, int ar)
@@ -141,11 +233,9 @@ void PmergeMe::makePairs(char** argv, int ar)
     {
         int a = std::atoi(argv[i]);
         int b = std::atoi(argv[i + 1]);
-
         if (a < b)
             std::swap(a, b);
         pairlist.push_back(std::make_pair(a, b));
-
         i += 2;
     }
     if (i < ar)
