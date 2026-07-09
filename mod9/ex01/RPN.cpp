@@ -1,4 +1,7 @@
 #include "RPN.h"
+#include <cctype>
+#include <cstdlib>
+#include <sstream>
 
 RPN::RPN(){}
 
@@ -64,60 +67,51 @@ double RPN::doOperation(int c)
 }
 
 
-static bool isCorrectString(const std::string &in)
+static bool isNumberToken(const std::string &token)
 {
-    if (!std::isdigit(in[0]))
+    if (token.empty())
         return false;
-    for (size_t i = 1; i < in.size(); i++)
+    for (size_t i = 0; i < token.size(); i++)
     {
-        if (i % 2 != 0)
-        {
-            if (!std::isdigit(in[i]))
-                return false;
-        }
-        else if (i % 2 == 0)
-        {
-            if (!isOperation(in[i]))
-                return false;
-        }
-    }           
+        if (!std::isdigit(static_cast<unsigned char>(token[i])))
+            return false;
+    }
     return true;
 }
 
 double RPN::calculateRPN(const std::string &input)
 {
     double result = 0;
-    double num;
-    if (input.size() < 3)
-        throw RPN::NotEoughElements();
-    if (!isCorrectString(input))
-        throw RPN::NonDigit();
+    std::istringstream iss(input);
+    std::string token;
 
-    for (size_t i = 0; i < input.size(); i++)
+    while (!stack_c.empty())
+        stack_c.pop();
+
+    while (iss >> token)
     {
-        if (std::isdigit(input[i]))
+        if (isNumberToken(token))
         {
-            num = input[i] - '0';
-            this->stack_c.push(num);
+            this->stack_c.push(std::atof(token.c_str()));
         }
-        else if (isOperation(input[i]) && stack_c.size() > 1)
+        else if (token.size() == 1 && isOperation(token[0]))
         {
-            double res = doOperation(input[i]);
+            if (stack_c.size() < 2)
+                throw RPN::NotEoughElements();
+            double res = doOperation(token[0]);
             this->stack_c.push(res);
         }
         else
         {
-            std::cout << "debug No deberia llegar aqui"<< std::endl;
+            throw RPN::NonDigit();
         }
     }
-    if (stack_c.size() == 1)
-    {
-        result = stack_c.top();
-         std::cout << "result: "<< result<< std::endl; 
-    }  
-    else
-        std::cout << "result: "<< result<< std::endl;
-        
+
+    if (stack_c.size() != 1)
+        throw RPN::NotEoughElements();
+
+    result = stack_c.top();
+    std::cout << "result: " << result << std::endl;
     return result;
 }
 

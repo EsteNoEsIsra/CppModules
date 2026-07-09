@@ -10,7 +10,6 @@ int main(int argc, char **argv)
             return 1;
         }
         std::string input_s(argv[1]);
-        input_s.erase(std::remove(input_s.begin(),input_s.end(), ' '),input_s.end());
         RPN rpn = RPN::getInstance();
         rpn.calculateRPN(input_s);
     }
