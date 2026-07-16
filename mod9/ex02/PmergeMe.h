@@ -10,7 +10,6 @@
 #include <iomanip>
 #include <algorithm>
 
-
 class PmergeMe
 {
     private:
@@ -24,6 +23,8 @@ class PmergeMe
 
         std::vector<int> mainChain;
         std::vector<int> pend;
+        std::size_t _vectorComparisons;
+        std::size_t _dequeComparisons;
 
         PmergeMe();
     public:
@@ -41,6 +42,8 @@ class PmergeMe
 
         std::vector<int>& getVecContainer();
         std::deque<int>& getDeqContainer();
+        std::size_t getVectorComparisons() const;
+        std::size_t getDequeComparisons() const;
 
         void printContainer_vec(std::vector<int> vec);
         void printContainer_deq(std::deque<int> deq);
@@ -50,6 +53,7 @@ class PmergeMe
         void insertPend();
         void mergeInsertFJ(std::vector<std::pair<int, int> >&pairs);
         void makeFordJonson(int container);
+
 };
 
 #endif

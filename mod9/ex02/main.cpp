@@ -29,6 +29,22 @@ int checkArgs(char **arg)
     return 1;
 }
 
+bool isOrdered(char **av, int ar)
+{
+    for (int i = 2; i < ar; i++)
+    {
+        int curr = std::atoi(av[i-1]);
+        int next = std::atoi(av[i]);
+
+        if (curr < next)
+            continue;
+        else 
+            return false;
+    }
+    return true;
+}
+
+
 int main(int ar, char **av)
 {
     if (ar == 1)
@@ -41,6 +57,12 @@ int main(int ar, char **av)
         std::cout << "Error: invalid input" << std::endl;
         return 1;
     } 
+    if (isOrdered(av, ar))
+    {
+        std::cout << "is Already ordered" << std::endl;
+        return 1;
+    }
+
     PmergeMe pme(ar);
     for (int i = 1; i < ar; ++i)
     {
@@ -67,10 +89,12 @@ int main(int ar, char **av)
     pme.printContainer_deq(pme.getDeqContainer());
     //tiempo
     double sec_vec = double(final_time_vec - init_time_vec) / CLOCKS_PER_SEC;
-    std::cout << "***VECTOR*** \n  Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec_vec << " us"<<std::endl;
+    std::cout << "***VECTOR*** \n  Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec_vec << " us"
+              << " | comparisons: " << pme.getVectorComparisons() << std::endl;
 
     double sec_deq = double(final_time_deq - init_time_deq) / CLOCKS_PER_SEC;
-    std::cout << "***DEQUE*** \n Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec_deq << " us"<<std::endl;
+    std::cout << "***DEQUE*** \n Sort of " << (ar - 1) << " elements in " << std::fixed << std::setprecision(5) <<  sec_deq << " us"
+              << " | comparisons: " << pme.getDequeComparisons() << std::endl;
 
 
     return 0;
