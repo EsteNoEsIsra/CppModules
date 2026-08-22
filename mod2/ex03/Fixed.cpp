@@ -52,55 +52,62 @@ int Fixed::toInt(void) const
 
 //Operators
 
-bool Fixed::operator>(const Fixed &nbr) {
+bool Fixed::operator>(const Fixed &nbr) const {
 	return this->value > nbr.getRawBits();
 }
 
-bool Fixed::operator<(const Fixed &nbr) {
+bool Fixed::operator<(const Fixed &nbr) const {
 	return this->value < nbr.getRawBits();
 }
 
-bool Fixed::operator<=(const Fixed &nbr) {
+bool Fixed::operator<=(const Fixed &nbr) const {
 	return this->value <= nbr.getRawBits();
 }
 
-bool Fixed::operator>=(const Fixed &nbr) {
+bool Fixed::operator>=(const Fixed &nbr) const {
 	return this->value >= nbr.getRawBits();
 }
 
-bool Fixed::operator==(const Fixed &nbr) {
+bool Fixed::operator==(const Fixed &nbr) const  {
 	return this->value == nbr.getRawBits();
 }
 
-bool Fixed::operator!=(const Fixed &nbr) {
+bool Fixed::operator!=(const Fixed &nbr) const  {
 	return this->value != nbr.getRawBits();
 }
 
-Fixed Fixed::operator+(const Fixed &nbr) {
+Fixed Fixed::operator+(const Fixed &nbr) const {
 	return Fixed( this->toFloat() + nbr.toFloat() );
 }
 
-Fixed Fixed::operator-(const Fixed &nbr) {
+Fixed Fixed::operator-(const Fixed &nbr) const {
 	return Fixed( this->toFloat() - nbr.toFloat() );
 }
 
-Fixed Fixed::operator*(const Fixed &nbr) {
+Fixed Fixed::operator*(const Fixed &nbr) const  {
 	return Fixed ( this->toFloat() * nbr.toFloat() );
 }
 
-Fixed Fixed::operator/(const Fixed &nbr) {
-	return Fixed ( this->toFloat() / nbr.toFloat() );
+Fixed Fixed::operator/(const Fixed &nbr) const {
+	if (nbr.value == 0)
+		return Fixed(0);
+	
+	Fixed result;
+	long long temp = ((long long)this->value << Fixed::bits);
+    result.setRawBits(temp / nbr.value);
+    
+    return result;
 }
 
 // pre-increment
-Fixed &Fixed::operator++(void)
+Fixed &Fixed::operator++(void) 
 {
 	this->value += 1;
 	return *this;
 }
 
 // post-increment
-Fixed Fixed::operator++(int)
+Fixed Fixed::operator++(int) 
 {
 	// copy before increment
 	Fixed tmp(this->value * toFloat());
@@ -116,7 +123,7 @@ Fixed &Fixed::operator--(void)
 }
 
 // post-decrement
-Fixed Fixed::operator--(int)
+Fixed Fixed::operator--(int)  
 {
 	Fixed tmp(this->value * toFloat());
 	this->value -= 1;

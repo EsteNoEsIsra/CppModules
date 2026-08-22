@@ -23,20 +23,20 @@ class Fixed
 
         ~Fixed();
 
-        bool operator>(const Fixed &nbr);
-        bool operator<(const Fixed &nbr);
-        bool operator<=(const Fixed &nbr);
-        bool operator>=(const Fixed &nbr);
-        bool operator==(const Fixed &nbr);
-        bool operator!=(const Fixed &nbr);
-        Fixed operator+(const Fixed &nbr);
-        Fixed operator-(const Fixed &nbr);
-        Fixed operator*(const Fixed &nbr);
-        Fixed operator/(const Fixed &nbr);
-        Fixed &operator++(void);
-        Fixed operator++(int);
-        Fixed &operator--(void);
-        Fixed operator--(int);
+        bool operator>(const Fixed &nbr)const ;
+        bool operator<(const Fixed &nbr)const ;
+        bool operator<=(const Fixed &nbr)const ;
+        bool operator>=(const Fixed &nbr)const ;
+        bool operator==(const Fixed &nbr)const ;
+        bool operator!=(const Fixed &nbr)const ;
+        Fixed operator+(const Fixed &nbr)const ;
+        Fixed operator-(const Fixed &nbr)const ;
+        Fixed operator*(const Fixed &nbr)const ;
+        Fixed operator/(const Fixed &nbr)const ;
+        Fixed &operator++(void) ;
+        Fixed operator++(int) ;
+        Fixed &operator--(void) ;
+        Fixed operator--(int) ;
 
         int getRawBits(void) const;
         void setRawBits(int const raw);
